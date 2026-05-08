@@ -17,6 +17,7 @@ It helps Codex, Claude Code, and AGENTS.md-compatible workflows start with a sho
 - Token-efficiency docs.
 - Validation script and pytest coverage.
 - Support, launch copy, and quick-start documentation.
+- skills.sh / npx skills direct GitHub install documentation.
 - Optional report-only auto-research loop.
 
 ## Quick Start
@@ -35,6 +36,12 @@ Copy skills/smart-skill-user/SKILL.md to your-repo/.agents/skills/smart-skill-us
 Add Smart Skill Preflight to your-repo/AGENTS.md
 ```
 
+npx skills direct GitHub install:
+
+```bash
+npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --copy --yes
+```
+
 Verification prompt:
 
 ```text
@@ -45,6 +52,7 @@ Before doing anything, list the instruction sources and skills you loaded. Then 
 
 - [README](../README.md)
 - [Install Quick Start](INSTALL_QUICK_START.md)
+- [skills.sh / npx skills Install](SKILLS_SH_INSTALL.md)
 - [GitHub Pages landing page](index.md)
 - [Skill Routing Matrix](skill-routing-matrix.md)
 - [Safety and Approval Gates](safety-and-approval-gates.md)

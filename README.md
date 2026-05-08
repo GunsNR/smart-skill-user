@@ -15,9 +15,22 @@ It is for developers who manage AI coding agents across multiple repos, clients,
 
 Quick start:
 
+- [skills.sh / npx skills Install](docs/SKILLS_SH_INSTALL.md)
 - [Install Quick Start](docs/INSTALL_QUICK_START.md)
 - [GitHub Pages-ready docs](docs/index.md)
 - [Release Notes v0.1.0](docs/RELEASE_NOTES_v0.1.0.md)
+
+Direct GitHub install with the `skills` CLI:
+
+```bash
+npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --copy --yes
+```
+
+List the available skills without installing:
+
+```bash
+npx skills add GunsNR/smart-skill-user --list
+```
 
 Global Codex install:
 
@@ -95,6 +108,7 @@ Expected result:
 ## Quick Links
 
 - [Install Quick Start](docs/INSTALL_QUICK_START.md)
+- [skills.sh / npx skills Install](docs/SKILLS_SH_INSTALL.md)
 - [GitHub Pages-ready Docs](docs/index.md)
 - [Support](SUPPORT.md)
 - [FAQ](docs/faq.md)
@@ -147,6 +161,32 @@ Manual install:
 4. Paste the verification prompt from "Make it run first in Codex."
 
 See [install/codex-global.md](install/codex-global.md).
+
+## Install: npx skills
+
+Use this when you want the standard `skills` CLI to install Smart Skill User from GitHub.
+
+List available skills:
+
+```bash
+npx skills add GunsNR/smart-skill-user --list
+```
+
+Install only the core skill for Codex:
+
+```bash
+npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --copy --yes
+```
+
+Install it globally for Codex:
+
+```bash
+npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --global --copy --yes
+```
+
+The `skills` CLI installs the skill. To make Smart Skill Preflight run first on every Codex task, also add the Codex guidance from the global or repo-level install docs.
+
+See [docs/SKILLS_SH_INSTALL.md](docs/SKILLS_SH_INSTALL.md).
 
 ## Install: Repo-Level Codex
 

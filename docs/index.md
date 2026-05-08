@@ -10,10 +10,17 @@ Smart Skill User is a lightweight preflight workflow for Codex, Claude Code, and
 
 Choose the install path that matches your workflow:
 
+- [npx skills Direct GitHub Install](SKILLS_SH_INSTALL.md): best when you want the standard `skills` CLI to install from `GunsNR/smart-skill-user`.
 - [Codex Global](https://github.com/GunsNR/smart-skill-user/blob/master/install/codex-global.md): best when you want Codex instructed to run Smart Skill Preflight before each task or session.
 - [Codex Repo-Level](https://github.com/GunsNR/smart-skill-user/blob/master/install/codex-repo.md): best when one project needs team or repo-specific guidance.
 - [Claude Code](https://github.com/GunsNR/smart-skill-user/blob/master/install/claude-code.md): portable instructions through `CLAUDE.md`.
 - [Generic AGENTS.md](https://github.com/GunsNR/smart-skill-user/blob/master/install/generic-agents-md.md): plain Markdown for compatible coding agents.
+
+Direct CLI install:
+
+```bash
+npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --copy --yes
+```
 
 Start here:
 
@@ -92,6 +99,7 @@ No analytics, tracking scripts, or external assets are required.
 More links:
 
 - [Install Quick Start](INSTALL_QUICK_START.md)
+- [skills.sh / npx skills Install](SKILLS_SH_INSTALL.md)
 - [Release Notes v0.1.0](RELEASE_NOTES_v0.1.0.md)
 - [Social Share Kit](SOCIAL_SHARE_KIT.md)
 - [Repo Discovery Checklist](REPO_DISCOVERY_CHECKLIST.md)

@@ -33,6 +33,7 @@ REQUIRED_FILES = [
     "docs/how-it-works.md",
     "docs/index.md",
     "docs/INSTALL_QUICK_START.md",
+    "docs/SKILLS_SH_INSTALL.md",
     "docs/LAUNCH_COPY.md",
     "docs/LAUNCH_ANNOUNCEMENTS.md",
     "docs/RELEASE_NOTES_v0.1.0.md",

@@ -1,8 +1,34 @@
 # Install Quick Start
 
-Smart Skill User can be installed four ways. Choose the smallest install path that matches your workflow.
+Smart Skill User can be installed five ways. Choose the smallest install path that matches your workflow.
 
-## 1. Global Codex Install
+## 1. npx skills Direct GitHub Install
+
+Use this when you want the standard `skills` CLI to install Smart Skill User from GitHub.
+
+List the available skills without installing:
+
+```bash
+npx skills add GunsNR/smart-skill-user --list
+```
+
+Install only the core skill for Codex at the project level:
+
+```bash
+npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --copy --yes
+```
+
+Install the core skill globally for Codex:
+
+```bash
+npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --global --copy --yes
+```
+
+This installs the skill. To make Codex run Smart Skill Preflight first on every task, also use the global or repo-level Codex guidance below.
+
+See [skills.sh And npx skills Install](SKILLS_SH_INSTALL.md).
+
+## 2. Global Codex Install
 
 Use this when you want Codex instructed to run Smart Skill Preflight before each task or session.
 
@@ -41,7 +67,7 @@ Expected result:
 - Codex skips irrelevant skills.
 - Codex edits no files.
 
-## 2. Repo-Level Codex Install
+## 3. Repo-Level Codex Install
 
 Use this when one repository needs project-specific guidance.
 
@@ -75,7 +101,7 @@ Copy-paste prompt for Codex:
 Install Smart Skill User in this repo. Copy the skill to .agents/skills/smart-skill-user/SKILL.md, add Smart Skill Preflight as the first step in AGENTS.md, validate, and do not modify product code.
 ```
 
-## 3. Claude Code Install
+## 4. Claude Code Install
 
 Use this when your project uses `CLAUDE.md`.
 
@@ -92,7 +118,7 @@ Add Smart Skill Preflight to this project's CLAUDE.md using the template from Sm
 
 Smart Skill User does not claim native Claude skill packaging. It provides portable Markdown instructions.
 
-## 4. Generic AGENTS.md Install
+## 5. Generic AGENTS.md Install
 
 Use this when your agent reads `AGENTS.md` or similar repo guidance.
 

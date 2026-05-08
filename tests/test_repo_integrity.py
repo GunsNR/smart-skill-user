@@ -10,6 +10,7 @@ NEW_DOCS = [
     ROOT / "SUPPORT.md",
     ROOT / "docs" / "LAUNCH_COPY.md",
     ROOT / "docs" / "INSTALL_QUICK_START.md",
+    ROOT / "docs" / "SKILLS_SH_INSTALL.md",
     ROOT / "docs" / "LAUNCH_ANNOUNCEMENTS.md",
     ROOT / "docs" / "index.md",
     ROOT / "docs" / "RELEASE_NOTES_v0.1.0.md",
@@ -65,6 +66,7 @@ def test_readme_links_new_support_and_launch_docs():
     text = (ROOT / "README.md").read_text(encoding="utf-8")
     for phrase in [
         "Install Quick Start",
+        "docs/SKILLS_SH_INSTALL.md",
         "GitHub Pages-ready Docs",
         "SUPPORT.md",
         "docs/index.md",
@@ -202,13 +204,17 @@ def test_support_doc_is_community_focused_and_non_monetized():
     assert "pricing" not in text.lower()
 
 
-def test_install_quick_start_has_four_install_paths():
+def test_install_quick_start_has_five_install_paths():
     text = (ROOT / "docs" / "INSTALL_QUICK_START.md").read_text(encoding="utf-8")
     for phrase in [
+        "npx skills Direct GitHub Install",
         "Global Codex Install",
         "Repo-Level Codex Install",
         "Claude Code Install",
         "Generic AGENTS.md Install",
+        "npx skills add GunsNR/smart-skill-user --list",
+        "npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --copy --yes",
+        "npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --global --copy --yes",
         'cd "<path-to-smart-skill-user>"',
         ".\\scripts\\install-codex-global.ps1",
         "bash ./scripts/install-codex-global.sh",
@@ -263,6 +269,8 @@ def test_pages_landing_page_exists_and_links_core_docs():
     for phrase in [
         "Smart Skill User",
         "Automatically choose the best skill or smallest effective skill stack before your AI coding agent starts.",
+        "npx skills Direct GitHub Install",
+        "npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --copy --yes",
         "Codex Global",
         "Codex Repo-Level",
         "Claude Code",
@@ -333,7 +341,33 @@ def test_repo_discovery_checklist_tracks_manual_publication_steps():
         "Branch: `master`",
         "Folder: `/docs`",
         "GitHub release created manually",
+        "Direct GitHub `npx skills` discovery verified with `--list`",
+        "skills.sh search/indexing verified manually after public installs",
+        "npx skills find smart-skill-user",
         "No aggressive monetization copy",
+    ]:
+        assert phrase in text
+
+
+def test_skills_sh_install_doc_is_precise_and_does_not_claim_indexing():
+    text = (ROOT / "docs" / "SKILLS_SH_INSTALL.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Direct GitHub Install",
+        "skills/smart-skill-user/SKILL.md",
+        "name: smart-skill-user",
+        "DISABLE_TELEMETRY=1 npx skills add GunsNR/smart-skill-user --list",
+        "npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --copy --yes",
+        "npx skills add GunsNR/smart-skill-user --skill smart-skill-user --agent codex --global --copy --yes",
+        "The `skills` CLI makes the skill available to the target agent.",
+        "`AGENTS.md` guidance tells Codex to run Smart Skill Preflight first.",
+        "Last checked: 2026-05-08.",
+        "Do not claim Smart Skill User is indexed on skills.sh",
+        "npx skills find smart-skill-user",
+        "Draft issue, only if approved",
+        "https://skills.sh/docs/cli",
+        "https://skills.sh/docs/faq",
+        "https://github.com/vercel-labs/skills",
+        "https://agentskills.io/specification",
     ]:
         assert phrase in text
 

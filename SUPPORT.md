@@ -5,6 +5,7 @@ Smart Skill User is a community-driven open-source project. It is maintained as 
 Before opening an issue, please check the project docs:
 
 - [Install Quick Start](docs/INSTALL_QUICK_START.md)
+- [skills.sh / npx skills Install](docs/SKILLS_SH_INSTALL.md)
 - [Codex Global Install](install/codex-global.md)
 - [Codex Repo-Level Install](install/codex-repo.md)
 - [Claude Code Install](install/claude-code.md)
@@ -19,6 +20,7 @@ Before opening an issue, please check the project docs:
 
 For Codex, start with the quick-start guide:
 
+- npx skills install: use this when you want the standard `skills` CLI to install the skill from GitHub.
 - Global install: use this when you want Codex instructed to run Smart Skill Preflight before each task or session.
 - Repo-level install: use this when one project needs its own local rules.
 
@@ -28,6 +30,7 @@ If setup does not work, include this in your issue:
 
 - operating system
 - install path used: global Codex, repo-level Codex, Claude Code, or generic AGENTS.md
+- `npx skills` command used, if any
 - whether the skill file exists in the expected location
 - whether the guidance file contains `Smart Skill Preflight`
 - the exact command you ran, with private paths and secrets removed
