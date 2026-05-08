@@ -16,9 +16,9 @@ No. It encourages more intentional context use, but actual usage depends on the 
 
 Yes, but keep the folder name, front matter, and install docs consistent.
 
-## Should every task use the same selected skills?
+## Should every task use the same skill stack?
 
-No. That is the point. The agent should select the smallest relevant set for each task.
+No. That is the point. The agent should choose the best single skill for narrow tasks and the smallest effective skill stack for multi-part tasks.
 
 ## Can I use this in private repos?
 

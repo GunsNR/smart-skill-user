@@ -6,7 +6,7 @@ Before starting a coding task, run Smart Skill Preflight:
 
 - confirm the repo, branch, project/client, and target surface
 - classify the task type
-- select only the smallest relevant skill set, usually 1-4 skills
+- automatically choose the best skill or smallest effective skill stack, usually 1-4 skills
 - skip irrelevant skills when that avoids wasted context or wrong-scope work
 - identify approval gates before editing
 - plan validation before completion

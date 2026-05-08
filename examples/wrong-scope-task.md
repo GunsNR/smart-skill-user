@@ -9,7 +9,7 @@
 ```text
 Scope: unclear: multiple projects or clients may have a homepage. Ask which repo, client/project, and page.
 Task type: UI/design/CRO after scope is confirmed.
-Selected skills: none yet; scope must be clarified first.
+Selected route: none yet; scope must be clarified before choosing a best skill or skill stack.
 Skipped skills: all implementation skills until target scope is known.
 Approval needed: yes, preview before commit once work begins.
 Planned validation: choose after target repo and page are confirmed.

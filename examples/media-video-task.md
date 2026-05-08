@@ -9,7 +9,8 @@
 ```text
 Scope: confirm repo, page, asset source, licensing, and mobile behavior.
 Task type: media/video/assets and UI validation.
-Selected skills: media asset extraction for formats and poster image; visual QA for responsive behavior.
+Selected skill stack: media asset extraction for formats and poster image; visual QA for responsive behavior.
+Why this stack: video work needs asset handling plus visual fallback checks.
 Skipped skills: database, deploy, CRM.
 Approval needed: preview before commit.
 Planned validation: local preview, poster fallback check, reduced-motion behavior if supported.

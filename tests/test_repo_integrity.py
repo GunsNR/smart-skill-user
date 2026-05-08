@@ -38,8 +38,22 @@ def test_readme_mentions_required_ecosystem_terms():
         "Claude Code",
         "AGENTS.md",
         "token-aware",
+        "best skill",
+        "skill stack",
         "Token-Efficiency Model",
         "approval gates",
+    ]:
+        assert phrase in text
+
+
+def test_skill_promises_best_skill_stack_selection():
+    text = (ROOT / "skills" / "smart-skill-user" / "SKILL.md").read_text(encoding="utf-8")
+    for phrase in [
+        "automatically choose the best skill or best skill stack",
+        "smallest effective skill stack",
+        "Score available skills",
+        "Use 1 skill for narrow tasks",
+        "Never load every skill by default",
     ]:
         assert phrase in text
 

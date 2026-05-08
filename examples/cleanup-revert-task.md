@@ -9,7 +9,8 @@
 ```text
 Scope: confirm repo, branch, files to clean, and exact change to revert.
 Task type: cleanup/revert/debugging and validation.
-Selected skills: review-output for risk review; validation workflow for test selection.
+Selected skill stack: review-output for risk review; validation workflow for test selection.
+Why this stack: cleanup work needs risk review plus validation before anything destructive happens.
 Skipped skills: visual design unless UI output is affected.
 Approval needed: yes, backup patch before destructive cleanup.
 Planned validation: inspect diff, run targeted tests, and check no unrelated files were removed.

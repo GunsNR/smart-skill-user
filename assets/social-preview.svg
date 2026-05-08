@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
   <title id="title">Smart Skill User</title>
-  <desc id="desc">A dark GitHub social preview for Smart Skill User showing a prompt routed through Smart Skill Preflight into selected skills while unused skills are skipped.</desc>
+  <desc id="desc">A dark GitHub social preview for Smart Skill User showing a prompt routed through Smart Skill Preflight into the best skill stack while unused skills are skipped.</desc>
 
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -52,11 +52,11 @@
 
   <g id="left-copy" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif">
     <rect x="56" y="56" width="510" height="528" rx="28" fill="#07111f" opacity="0.7" stroke="#1f3550"/>
-    <text x="96" y="142" fill="#8be9dc" font-size="17" font-weight="800" letter-spacing="2.4">TOKEN-AWARE PREFLIGHT ROUTER</text>
+    <text x="96" y="142" fill="#8be9dc" font-size="17" font-weight="800" letter-spacing="2.4">BEST SKILL STACK ROUTER</text>
     <text x="96" y="222" fill="#f8fafc" font-size="72" font-weight="850">Smart</text>
     <text x="96" y="296" fill="#f8fafc" font-size="72" font-weight="850">Skill User</text>
-    <text x="99" y="352" fill="#b9c7d8" font-size="27" font-weight="500">Token-aware skill routing</text>
-    <text x="99" y="388" fill="#b9c7d8" font-size="27" font-weight="500">for AI coding agents</text>
+    <text x="99" y="352" fill="#b9c7d8" font-size="27" font-weight="500">Automatically chooses</text>
+    <text x="99" y="388" fill="#b9c7d8" font-size="27" font-weight="500">the best skill stack</text>
 
     <g id="badges" font-size="18" font-weight="750">
       <rect x="96" y="438" width="92" height="38" rx="19" fill="#102237" stroke="#2a4968"/>
@@ -67,8 +67,8 @@
       <text x="382" y="463" fill="#dbeafe">AGENTS.md</text>
     </g>
 
-    <text x="96" y="532" fill="#e2e8f0" font-size="23" font-weight="650">Choose the right skills before</text>
-    <text x="96" y="563" fill="#e2e8f0" font-size="23" font-weight="650">the agent starts.</text>
+    <text x="96" y="532" fill="#e2e8f0" font-size="23" font-weight="650">One skill when enough.</text>
+    <text x="96" y="563" fill="#e2e8f0" font-size="23" font-weight="650">A stack when needed.</text>
   </g>
 
   <g id="routing-diagram" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif" filter="url(#softShadow)">
@@ -88,7 +88,7 @@
       <rect x="894" y="240" width="172" height="36" rx="18" fill="url(#preflight)" opacity="0.95"/>
       <text x="914" y="264" fill="#06111f" font-size="17" font-weight="850">Smart Skill</text>
       <text x="922" y="314" fill="#f8fafc" font-size="27" font-weight="850">Preflight</text>
-      <text x="918" y="342" fill="#9fb4ca" font-size="14" font-weight="650">scope + task type</text>
+      <text x="918" y="342" fill="#9fb4ca" font-size="14" font-weight="650">score + choose stack</text>
     </g>
 
     <g id="selected-routes" stroke="#55e6d1" stroke-width="3" fill="none" marker-end="url(#arrow)" opacity="0.95">
@@ -130,9 +130,9 @@
       <rect x="652" y="105" width="530" height="58" rx="18" fill="#091526" stroke="#1c314a"/>
       <text x="682" y="140" fill="#93c5fd">confirm scope</text>
       <circle cx="808" cy="133" r="4" fill="#38f5d0"/>
-      <text x="828" y="140" fill="#a7f3d0">load less</text>
+      <text x="828" y="140" fill="#a7f3d0">score skills</text>
       <circle cx="918" cy="133" r="4" fill="#38f5d0"/>
-      <text x="938" y="140" fill="#c4b5fd">skip noise</text>
+      <text x="938" y="140" fill="#c4b5fd">best stack</text>
       <circle cx="1040" cy="133" r="4" fill="#38f5d0"/>
       <text x="1060" y="140" fill="#fde68a">execute safer</text>
     </g>

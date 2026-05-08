@@ -7,8 +7,9 @@ Before implementation, review, validation, cleanup, connector use, or release wo
 ```text
 Scope: <repo, project/client, branch if relevant, target page/service/module, or ask if unclear>
 Task type: <UI/CRO, SEO/schema, copy, media, connector, research, cleanup, deploy, validation, docs>
-Selected skills: <1-4 relevant skills with reasons>
-Skipped skills: <important skips only>
+Selected route: <best single skill, or smallest effective skill stack>
+Why this route: <short reason each selected skill belongs>
+Skipped skills: <irrelevant skills skipped when helpful>
 Approval needed: <yes/no and why>
 Planned validation: <smallest checks that match the risk>
 ```
@@ -16,6 +17,8 @@ Planned validation: <smallest checks that match the risk>
 Rules:
 
 - confirm repo path before editing
+- classify the task before loading task-specific docs
+- choose the best skill or smallest effective skill stack before work begins
 - stop and ask when scope is unclear
 - do not load every skill or doc
 - use targeted searches and targeted file reads

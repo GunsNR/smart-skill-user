@@ -1,23 +1,26 @@
 # Smart Skill User
 
-**Stop loading every instruction. Let your agent choose the right skills first.**
+**Stop loading every instruction. Start with the right ones.**
 
 [![CI ready](https://img.shields.io/badge/CI-ready-blue.svg)](.github/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ![Smart Skill User social preview](assets/social-preview.svg)
 
-Smart Skill User is a token-aware preflight skill router for AI coding agents. It gives Codex, Claude Code, and AGENTS.md-style workflows a small first step: confirm scope, classify the task, select only the relevant skills or instructions, enforce approval gates, and avoid loading the entire instruction universe into context.
+**Automatically choose the best skill or best skill stack before your AI coding agent starts.**
+
+Smart Skill User automatically chooses the best skill or smallest effective skill stack before your AI coding agent starts work. It gives Codex, Claude Code, and AGENTS.md-style workflows a token-aware preflight: confirm scope, classify the task, score available skills by relevance, choose one skill when one is enough or a stack when the task needs more, enforce approval gates, and avoid loading the entire instruction universe into context.
 
 ## Why This Exists
 
 AI coding agents are powerful, but many repositories now contain layered instructions, skills, templates, client notes, deployment rules, and workflow docs. Loading all of it by default wastes context and increases the chance of wrong-repo, wrong-client, or wrong-tool drift.
 
-Smart Skill User turns that messy first minute into a repeatable preflight.
+Smart Skill User turns that messy first minute into a repeatable preflight that routes each task to the right skill stack before execution begins.
 
 ## The Problem
 
 - Agents load too many instructions before they know the task.
+- Agents often need one excellent skill, not a pile of unrelated ones.
 - Long-running repos accumulate stale or unrelated guidance.
 - Multi-client workspaces make wrong-scope edits easier.
 - Visual, cleanup, connector, and deploy tasks need different approval gates.
@@ -29,8 +32,9 @@ Smart Skill User asks an agent to start every task by reporting:
 
 - confirmed scope: repo, project/client, branch, page/service/module
 - task type: UI, SEO, copy, media, connector, research, cleanup, deploy, validation, or docs
-- selected skills: usually 1-4 relevant skills or instruction packs
-- important skipped skills: only when skipping prevents wasted work
+- selected route: the best single skill for narrow tasks, or the smallest effective skill stack for multi-part work
+- relevance reason: why each selected skill belongs in the stack
+- skipped skills: irrelevant skills explicitly skipped when skipping prevents wasted work
 - approval gates: preview, backup patch, deploy approval, or secret-safety rules
 - planned validation: the smallest checks that match the risk
 
@@ -39,9 +43,14 @@ Smart Skill User asks an agent to start every task by reporting:
 1. Read only the preflight instruction.
 2. Confirm the working scope.
 3. Classify the request.
-4. Select the smallest useful skill set.
-5. Apply those skills as constraints, not as decoration.
-6. Validate and report concisely.
+4. Score available skills by task relevance, risk, and validation needs.
+5. Automatically choose the best skill or minimal skill stack.
+6. Apply the selected skill stack as constraints, not as decoration.
+7. Validate and report concisely.
+
+```text
+Preflight -> scope -> task type -> best skill stack -> safer execution
+```
 
 ## Before And After
 
@@ -58,7 +67,8 @@ The agent may read unrelated backend docs, deployment notes, database schemas, a
 ```text
 Scope: unclear: which repo/client/page?
 Task type: UI/CRO
-Selected skills: visual-quality, CRO review, copy/local SEO
+Selected route: visual-quality + CRO review + copy/local SEO
+Why this stack: mobile UI work needs layout, conversion, and copy checks
 Skipped: deployment, database, connector tools
 Approval needed: yes, preview before commit
 ```
@@ -118,13 +128,13 @@ See [install/generic-agents-md.md](install/generic-agents-md.md).
 
 ## Routing Matrix Preview
 
-| Task | Select | Skip | Gate |
+| Task | Best skill or stack | Skip | Gate |
 | --- | --- | --- | --- |
-| Mobile hero | visual, CRO, copy | deployment, database | preview before commit |
-| SEO schema | schema, source-truth, copy | deploy, media | no fake claims |
-| Media/video | media extraction, asset policy | database, CRM | no hotlinking |
-| Cleanup/revert | review, backup, validation | visual unless affected | backup patch first |
-| Deploy/release | release, CI, hosting | unrelated docs | explicit approval |
+| Mobile hero | visual + CRO + copy | deployment, database | preview before commit |
+| SEO schema | schema + source-truth + copy | deploy, media | no fake claims |
+| Media/video | media extraction + asset policy | database, CRM | no hotlinking |
+| Cleanup/revert | review + backup + validation | visual unless affected | backup patch first |
+| Deploy/release | release + CI + hosting | unrelated docs | explicit approval |
 
 See [docs/skill-routing-matrix.md](docs/skill-routing-matrix.md).
 
@@ -147,7 +157,7 @@ The goal is not to minimize context at all costs. The goal is to spend context o
 Smart Skill User favors:
 
 - targeted searches over broad file reads
-- selected skill docs over every skill doc
+- the best skill or smallest effective skill stack over every skill doc
 - current repo state over old chat history
 - bounded validation over unnecessary renders or live tools
 
@@ -174,17 +184,17 @@ See [docs/token-efficiency.md](docs/token-efficiency.md).
 
 Stop loading every instruction into your AI coding agent.
 
-Smart Skill User is a tiny preflight workflow for Codex, Claude Code, and AGENTS.md agents: confirm scope, classify the task, choose only relevant skills, and enforce approval gates before work starts.
+Smart Skill User is a tiny preflight workflow for Codex, Claude Code, and AGENTS.md agents: confirm scope, classify the task, automatically choose the best skill or minimal skill stack, and enforce approval gates before work starts.
 
 **LinkedIn post**
 
-AI coding agents need better first steps. Smart Skill User is a lightweight, open-source preflight workflow for Codex, Claude Code, and AGENTS.md-compatible agents. It helps agents confirm scope, identify task type, load only relevant skills, and apply safety gates for visual work, cleanup, connectors, and deploys.
+AI coding agents need better first steps. Smart Skill User is a lightweight, open-source preflight workflow for Codex, Claude Code, and AGENTS.md-compatible agents. It helps agents confirm scope, identify task type, automatically choose the best skill or smallest effective skill stack, and apply safety gates for visual work, cleanup, connectors, and deploys.
 
 It is intentionally small: one skill, install templates, examples, validation tests, and docs for teams that want less context waste and fewer wrong-scope edits.
 
 **Reddit/Hacker News style post**
 
-I made a small open-source workflow called Smart Skill User. It is a token-aware preflight router for AI coding agents. The idea is simple: before an agent reads half your repo docs, it should confirm scope, classify the task, pick only the relevant skills, and identify approval gates.
+I made a small open-source workflow called Smart Skill User. It is a token-aware preflight router for AI coding agents. The idea is simple: before an agent reads half your repo docs, it should confirm scope, classify the task, automatically pick the best skill or minimal skill stack, and identify approval gates.
 
 It supports Codex skill installs, repo-level AGENTS.md, Claude Code instructions, and generic agent workflows. Feedback welcome, especially from people maintaining multi-project AI coding setups.
 

@@ -4,7 +4,7 @@
 
 `assets/social-preview.svg` is the source artwork for the GitHub social preview, README hero image, and launch post visual.
 
-The image is a self-contained SVG with no external images, hotlinks, screenshots, proprietary assets, or private client data. It illustrates the Smart Skill User flow: prompt, preflight, selected skills, skipped skills, and safer execution.
+The image is a self-contained SVG with no external images, hotlinks, screenshots, proprietary assets, or private client data. It illustrates the Smart Skill User flow: prompt, preflight, best skill stack, skipped skills, and safer execution.
 
 `assets/social-preview.png` is an exported copy of the SVG for platforms that prefer raster images. It is 1280x640.
 

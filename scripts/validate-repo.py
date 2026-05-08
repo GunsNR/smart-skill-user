@@ -90,7 +90,7 @@ def validate_skill_frontmatter() -> None:
     expected = (
         "---\n"
         "name: smart-skill-user\n"
-        "description: Token-aware preflight router that selects the smallest relevant skill set before an AI coding agent starts work.\n"
+        "description: Token-aware preflight router that automatically chooses the best skill or smallest effective skill stack before an AI coding agent starts work.\n"
         "---"
     )
     if not skill.startswith(expected):
