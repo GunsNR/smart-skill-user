@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Smart Skill User</title>
+  <desc id="desc">Token-aware skill routing for AI coding agents</desc>
+  <rect width="1200" height="630" fill="#101418"/>
+  <rect x="70" y="70" width="1060" height="490" rx="28" fill="#f7f4ec"/>
+  <text x="115" y="160" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="58" font-weight="800" fill="#111827">Smart Skill User</text>
+  <text x="118" y="214" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" fill="#3d4752">Token-aware skill routing for AI coding agents</text>
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">
+    <rect x="120" y="320" width="180" height="74" rx="10" fill="#dfe7fd"/>
+    <text x="158" y="366" fill="#1d315f">prompt</text>
+    <path d="M315 357h95" stroke="#111827" stroke-width="6" stroke-linecap="round"/>
+    <path d="M396 340l24 17-24 17" fill="none" stroke="#111827" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="440" y="300" width="220" height="114" rx="10" fill="#d8efe4"/>
+    <text x="490" y="348" fill="#153f2a">preflight</text>
+    <text x="490" y="382" font-size="18" fill="#2f5f46">scope + task type</text>
+    <path d="M675 357h95" stroke="#111827" stroke-width="6" stroke-linecap="round"/>
+    <path d="M756 340l24 17-24 17" fill="none" stroke="#111827" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="800" y="300" width="250" height="114" rx="10" fill="#fdecc8"/>
+    <text x="840" y="348" fill="#5a3a0a">selected skills</text>
+    <text x="840" y="382" font-size="18" fill="#76521b">safer execution</text>
+  </g>
+  <text x="118" y="510" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" fill="#374151">Confirm scope. Load less. Avoid wrong-repo drift.</text>
+</svg>
