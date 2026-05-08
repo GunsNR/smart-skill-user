@@ -112,6 +112,7 @@ def validate_readme_sections() -> None:
         "Install: Repo-Level Codex",
         "Install: Claude Code",
         "Install: Generic AGENTS.md",
+        "Make it run first in Codex",
         "Token-Efficiency Model",
         "Safety Model",
         "Optional Auto-Research Loop",

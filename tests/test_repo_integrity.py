@@ -6,6 +6,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR = ROOT / "scripts" / "validate-repo.py"
+VERIFICATION_PROMPT = (
+    "Before doing anything, list the instruction sources and skills you loaded. "
+    "Then run Smart Skill Preflight for this task: update a mobile homepage hero. "
+    "Do not edit files."
+)
 
 
 def load_validator():
@@ -46,6 +51,22 @@ def test_readme_mentions_required_ecosystem_terms():
         assert phrase in text
 
 
+def test_readme_documents_global_run_first_codex_install():
+    text = (ROOT / "README.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Make it run first in Codex",
+        "run on every Codex task/session",
+        "$HOME/.codex/AGENTS.md",
+        "$HOME/.agents/skills",
+        "does not modify Codex internals",
+        "Repo-level install",
+        "repo `AGENTS.md`",
+        "repo `.agents/skills`",
+        VERIFICATION_PROMPT,
+    ]:
+        assert phrase in text
+
+
 def test_skill_promises_best_skill_stack_selection():
     text = (ROOT / "skills" / "smart-skill-user" / "SKILL.md").read_text(encoding="utf-8")
     for phrase in [
@@ -66,3 +87,70 @@ def test_install_docs_templates_examples_and_scripts_exist():
         assert matches, f"No required files registered for {prefix}"
         for rel in matches:
             assert (ROOT / rel).is_file(), rel
+
+
+def test_codex_global_install_doc_has_paths_restart_and_verification_prompt():
+    text = (ROOT / "install" / "codex-global.md").read_text(encoding="utf-8")
+    for phrase in [
+        "$HOME/.codex/AGENTS.md",
+        "$HOME/.agents/skills",
+        "Restart Codex",
+        "Verification Prompt",
+        VERIFICATION_PROMPT,
+        "Codex edits no files",
+    ]:
+        assert phrase in text
+
+
+def test_repo_level_install_doc_has_copy_paths_and_install_prompt():
+    text = (ROOT / "install" / "codex-repo.md").read_text(encoding="utf-8")
+    for phrase in [
+        "skills/smart-skill-user/SKILL.md",
+        "your-repo/.agents/skills/smart-skill-user/SKILL.md",
+        "your-repo/AGENTS.md",
+        "Install Smart Skill User in this repo. Copy the skill to .agents/skills/smart-skill-user/SKILL.md, add Smart Skill Preflight as the first step in AGENTS.md, validate, and do not modify product code.",
+        VERIFICATION_PROMPT,
+    ]:
+        assert phrase in text
+
+
+def test_global_codex_template_has_required_preflight_rules():
+    text = (ROOT / "templates" / "global-codex-AGENTS.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Smart Skill Preflight",
+        "Before implementing any user request",
+        "single best skill",
+        "smallest effective skill stack",
+        "Do not load every skill",
+        "Approval gates",
+        "deploy, publish, DNS, CRM/live connector",
+        "preview/render",
+        "backup patch",
+        "This is user-level instruction guidance, not a hook into Codex internals.",
+    ]:
+        assert phrase in text
+
+
+def test_install_scripts_describe_backup_idempotency_and_verification_prompt():
+    for rel in ["scripts/install-codex-global.ps1", "scripts/install-codex-global.sh"]:
+        text = (ROOT / rel).read_text(encoding="utf-8")
+        for phrase in [
+            "Backup created",
+            "no duplicate insertion",
+            "verification prompt",
+            "Restart Codex",
+            VERIFICATION_PROMPT,
+        ]:
+            assert phrase in text
+
+
+def test_token_efficiency_says_automatic_does_not_load_everything():
+    text = (ROOT / "docs" / "token-efficiency.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Automatic does not mean",
+        "Run a short preflight every task",
+        "Avoid loading every skill",
+        "Avoid broad research unless asked",
+        "Avoid preview/render unless visual QA is needed",
+    ]:
+        assert phrase in text

@@ -52,6 +52,29 @@ Smart Skill User asks an agent to start every task by reporting:
 Preflight -> scope -> task type -> best skill stack -> safer execution
 ```
 
+## Make it run first in Codex
+
+Install Smart Skill User globally so Codex is instructed to run Smart Skill Preflight before each task or session. This does not modify Codex internals; it uses Codex's user-level instruction and skill locations.
+
+There are two supported Codex modes:
+
+- **Global Codex install:** best for "run on every Codex task/session." Uses `$HOME/.codex/AGENTS.md` and `$HOME/.agents/skills`.
+- **Repo-level install:** best for team or project-specific behavior. Uses repo `AGENTS.md` and repo `.agents/skills`.
+
+Verification prompt:
+
+```text
+Before doing anything, list the instruction sources and skills you loaded. Then run Smart Skill Preflight for this task: update a mobile homepage hero. Do not edit files.
+```
+
+Expected result:
+
+- Codex mentions Smart Skill Preflight or the global/user-level guidance.
+- Codex confirms scope.
+- Codex selects a relevant skill stack.
+- Codex skips irrelevant skills.
+- Codex edits no files.
+
 ## Before And After
 
 **User prompt**
@@ -75,13 +98,15 @@ Approval needed: yes, preview before commit
 
 ## Install: Codex Global
 
-Use this when you want Smart Skill User available across your Codex workspaces.
+Use this when you want Smart Skill User available across your Codex workspaces and instructed to run as the first preflight step on every Codex task.
 
 ```powershell
-pwsh ./scripts/install-codex-global.ps1
+cd "<path-to-smart-skill-user>"
+.\scripts\install-codex-global.ps1
 ```
 
 ```bash
+cd "<path-to-smart-skill-user>"
 bash ./scripts/install-codex-global.sh
 ```
 
@@ -90,16 +115,23 @@ Manual install:
 1. Copy `skills/smart-skill-user/SKILL.md` to `$HOME/.agents/skills/smart-skill-user/SKILL.md`.
 2. Add the guidance from `templates/global-codex-AGENTS.md` to `$HOME/.codex/AGENTS.md`.
 3. Restart Codex.
+4. Paste the verification prompt from "Make it run first in Codex."
 
 See [install/codex-global.md](install/codex-global.md).
 
 ## Install: Repo-Level Codex
 
-Use this when a repository needs its own preflight rule.
+Use this when a repository needs team or project-specific Smart Skill Preflight behavior.
 
-1. Copy `skills/smart-skill-user/` to `.agents/skills/smart-skill-user/`.
-2. Add the block from `templates/AGENTS.md` to the repo `AGENTS.md`.
-3. Ask Codex to run Smart Skill Preflight before work.
+1. Copy `skills/smart-skill-user/SKILL.md` to `your-repo/.agents/skills/smart-skill-user/SKILL.md`.
+2. Add the Smart Skill Preflight section from `templates/AGENTS.md` to `your-repo/AGENTS.md`.
+3. Ask Codex to validate the install without modifying product code.
+
+Copy-paste prompt:
+
+```text
+Install Smart Skill User in this repo. Copy the skill to .agents/skills/smart-skill-user/SKILL.md, add Smart Skill Preflight as the first step in AGENTS.md, validate, and do not modify product code.
+```
 
 See [install/codex-repo.md](install/codex-repo.md).
 
@@ -156,8 +188,11 @@ The goal is not to minimize context at all costs. The goal is to spend context o
 
 Smart Skill User favors:
 
+- a short preflight on every task
 - targeted searches over broad file reads
 - the best skill or smallest effective skill stack over every skill doc
+- avoiding broad research unless asked
+- avoiding preview/render unless visual QA is needed
 - current repo state over old chat history
 - bounded validation over unnecessary renders or live tools
 

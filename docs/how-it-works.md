@@ -2,6 +2,8 @@
 
 Smart Skill User adds one lightweight step before implementation: automatically choose the best skill or smallest effective skill stack for the task.
 
+For Codex, global install makes this the first instructed preflight step in each task or session through `$HOME/.codex/AGENTS.md` and `$HOME/.agents/skills`. It does not hook into Codex internals.
+
 1. Confirm scope.
 2. Classify the task.
 3. Score available skills by relevance.
@@ -22,6 +24,7 @@ Preflight -> scope -> task type -> best skill stack -> safer execution
 - Use 2-4 skills for multi-part tasks.
 - Use more than 4 only when the task explicitly spans multiple domains.
 - Never load every skill by default.
+- Avoid unnecessary file reads, searches, renders, and tool calls until the route is clear.
 
 ## Good Preflight
 

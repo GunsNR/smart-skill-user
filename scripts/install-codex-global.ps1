@@ -7,6 +7,7 @@ $targetSkill = Join-Path $targetSkillDir "SKILL.md"
 $codexDir = Join-Path $HOME ".codex"
 $agentsFile = Join-Path $codexDir "AGENTS.md"
 $template = Join-Path $repoRoot "templates\global-codex-AGENTS.md"
+$verificationPrompt = "Before doing anything, list the instruction sources and skills you loaded. Then run Smart Skill Preflight for this task: update a mobile homepage hero. Do not edit files."
 
 if (!(Test-Path $sourceSkill)) {
     throw "Missing source skill: $sourceSkill"
@@ -17,6 +18,7 @@ New-Item -ItemType Directory -Force -Path $codexDir | Out-Null
 
 if (Test-Path $targetSkill) {
     Copy-Item $targetSkill "$targetSkill.bak" -Force
+    Write-Host "Backup created: $targetSkill.bak"
 }
 Copy-Item $sourceSkill $targetSkill -Force
 
@@ -25,7 +27,10 @@ if (Test-Path $agentsFile) {
     $existing = Get-Content -Raw -LiteralPath $agentsFile
     if ($existing -notmatch "Smart Skill Preflight") {
         Copy-Item $agentsFile "$agentsFile.bak" -Force
+        Write-Host "Backup created: $agentsFile.bak"
         Add-Content -LiteralPath $agentsFile -Value "`n$templateText"
+    } else {
+        Write-Host "Smart Skill Preflight already found in $agentsFile; no duplicate insertion needed."
     }
 } else {
     Set-Content -LiteralPath $agentsFile -Value $templateText -NoNewline
@@ -34,4 +39,5 @@ if (Test-Path $agentsFile) {
 Write-Host "Installed Smart Skill User."
 Write-Host "Skill: $targetSkill"
 Write-Host "Guidance: $agentsFile"
-Write-Host "Restart Codex, then ask it to run Smart Skill Preflight before work."
+Write-Host "Restart Codex, then paste this verification prompt:"
+Write-Host $verificationPrompt
