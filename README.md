@@ -7,9 +7,26 @@
 
 ![Smart Skill User social preview](assets/social-preview.svg)
 
-**Automatically choose the best skill or best skill stack before your AI coding agent starts.**
+**Automatically choose the best skill or smallest effective skill stack before your AI coding agent starts.**
 
 Smart Skill User automatically chooses the best skill or smallest effective skill stack before your AI coding agent starts work. It gives Codex, Claude Code, and AGENTS.md-style workflows a token-aware preflight: confirm scope, classify the task, score available skills by relevance, choose one skill when one is enough or a stack when the task needs more, enforce approval gates, and avoid loading the entire instruction universe into context.
+
+It is for developers who manage AI coding agents across multiple repos, clients, products, or instruction sets and want the agent to start focused instead of reading everything by default.
+
+Quick start:
+
+- [Install Quick Start](docs/INSTALL_QUICK_START.md)
+- [GitHub Pages-ready docs](docs/index.md)
+- [Release Notes v0.1.0](docs/RELEASE_NOTES_v0.1.0.md)
+
+Global Codex install:
+
+```powershell
+cd "<path-to-smart-skill-user>"
+.\scripts\install-codex-global.ps1
+```
+
+Star this repo if it helps your AI coding workflow. Feedback and docs improvements are welcome.
 
 ## Why This Exists
 
@@ -78,8 +95,12 @@ Expected result:
 ## Quick Links
 
 - [Install Quick Start](docs/INSTALL_QUICK_START.md)
+- [GitHub Pages-ready Docs](docs/index.md)
 - [Support](SUPPORT.md)
 - [FAQ](docs/faq.md)
+- [Release Notes v0.1.0](docs/RELEASE_NOTES_v0.1.0.md)
+- [Social Share Kit](docs/SOCIAL_SHARE_KIT.md)
+- [Repo Discovery Checklist](docs/REPO_DISCOVERY_CHECKLIST.md)
 - [Launch Copy](docs/LAUNCH_COPY.md)
 - [Launch Announcements](docs/LAUNCH_ANNOUNCEMENTS.md)
 
