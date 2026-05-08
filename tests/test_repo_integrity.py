@@ -6,6 +6,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR = ROOT / "scripts" / "validate-repo.py"
+NEW_DOCS = [
+    ROOT / "SUPPORT.md",
+    ROOT / "docs" / "LAUNCH_COPY.md",
+    ROOT / "docs" / "INSTALL_QUICK_START.md",
+    ROOT / "docs" / "LAUNCH_ANNOUNCEMENTS.md",
+]
 VERIFICATION_PROMPT = (
     "Before doing anything, list the instruction sources and skills you loaded. "
     "Then run Smart Skill Preflight for this task: update a mobile homepage hero. "
@@ -47,6 +53,17 @@ def test_readme_mentions_required_ecosystem_terms():
         "skill stack",
         "Token-Efficiency Model",
         "approval gates",
+    ]:
+        assert phrase in text
+
+
+def test_readme_links_new_support_and_launch_docs():
+    text = (ROOT / "README.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Install Quick Start",
+        "SUPPORT.md",
+        "docs/LAUNCH_COPY.md",
+        "docs/LAUNCH_ANNOUNCEMENTS.md",
     ]:
         assert phrase in text
 
@@ -154,3 +171,104 @@ def test_token_efficiency_says_automatic_does_not_load_everything():
         "Avoid preview/render unless visual QA is needed",
     ]:
         assert phrase in text
+
+
+def test_support_doc_is_community_focused_and_non_monetized():
+    text = (ROOT / "SUPPORT.md").read_text(encoding="utf-8")
+    for phrase in [
+        "community-driven open-source project",
+        "Installation And Setup Help",
+        "Usage Questions",
+        "Validation And Troubleshooting",
+        "Issues, Feedback, And Contributions",
+        "Code Of Conduct",
+        "MIT licensed",
+        "Support The Project",
+        "star the repository",
+        "contribute examples or documentation",
+    ]:
+        assert phrase in text
+    assert "GitHub Sponsors" not in text
+    assert "pricing" not in text.lower()
+
+
+def test_install_quick_start_has_four_install_paths():
+    text = (ROOT / "docs" / "INSTALL_QUICK_START.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Global Codex Install",
+        "Repo-Level Codex Install",
+        "Claude Code Install",
+        "Generic AGENTS.md Install",
+        'cd "<path-to-smart-skill-user>"',
+        ".\\scripts\\install-codex-global.ps1",
+        "bash ./scripts/install-codex-global.sh",
+        "your-repo/.agents/skills/smart-skill-user/SKILL.md",
+        "templates/CLAUDE.md",
+        "templates/smart-skill-preflight.md",
+    ]:
+        assert phrase in text
+
+
+def test_launch_copy_has_required_channels_and_claims():
+    text = (ROOT / "docs" / "LAUNCH_COPY.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Primary Headline",
+        "Tagline",
+        "One-Liner",
+        "Elevator Pitch",
+        "X/Twitter Copy",
+        "LinkedIn Post",
+        "Reddit / Hacker News Post",
+        "Email / Newsletter Pitch",
+        "Mastodon / Bluesky Copy",
+        "GitHub Repository Description",
+        "Press / Speaking Points",
+        "SEO Keywords",
+        "https://github.com/GunsNR/smart-skill-user",
+        "automatically chooses the best skill or smallest effective skill stack",
+        "MIT licensed",
+    ]:
+        assert phrase in text
+
+
+def test_launch_announcements_are_ready_to_edit_not_auto_publish():
+    text = (ROOT / "docs" / "LAUNCH_ANNOUNCEMENTS.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Do not post them automatically",
+        "GitHub Release Note Draft",
+        "X/Twitter Launch Thread",
+        "LinkedIn Announcement",
+        "Reddit / Hacker News Announcement",
+        "Newsletter Announcement",
+        "Community Post",
+        "Maintainer Note",
+        "do not imply affiliation with OpenAI, Anthropic, or GitHub",
+        "do not promise measured token reductions unless you have current public data",
+    ]:
+        assert phrase in text
+
+
+def test_new_docs_are_clean_of_editor_artifacts_and_forbidden_language():
+    forbidden = [
+        "Make these code changes?",
+        "Please confirm you want Copilot",
+        "GunsNR accepted the action",
+        "\nCode\n",
+        "\nText\n",
+        "\nPowerShell\n",
+        "\nbash\n",
+        "Gumroad",
+        "pricing tier",
+        "enterprise licensing",
+        "PyPI",
+        "npm publishing",
+        "Marketplace",
+        "official OpenAI",
+        "official Anthropic",
+        "guaranteed virality",
+        "guaranteed token savings",
+    ]
+    for path in NEW_DOCS:
+        text = path.read_text(encoding="utf-8")
+        for phrase in forbidden:
+            assert phrase not in text, f"{path.name} contains forbidden phrase {phrase!r}"

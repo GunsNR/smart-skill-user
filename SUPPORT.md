@@ -1,122 +1,125 @@
 # Support
 
-Smart Skill User is an open-source project maintained by the community. Here's how to get help, report issues, and contribute.
+Smart Skill User is a community-driven open-source project. It is maintained as a lightweight instruction workflow for Codex, Claude Code, and AGENTS.md-compatible coding agents.
 
-## Installation & Setup Help
+Before opening an issue, please check the project docs:
 
-If you need help installing Smart Skill User, start here:
+- [Install Quick Start](docs/INSTALL_QUICK_START.md)
+- [Codex Global Install](install/codex-global.md)
+- [Codex Repo-Level Install](install/codex-repo.md)
+- [Claude Code Install](install/claude-code.md)
+- [Generic AGENTS.md Install](install/generic-agents-md.md)
+- [FAQ](docs/faq.md)
+- [How It Works](docs/how-it-works.md)
+- [Skill Routing Matrix](docs/skill-routing-matrix.md)
+- [Safety and Approval Gates](docs/safety-and-approval-gates.md)
+- [Token Efficiency](docs/token-efficiency.md)
 
-- **[Quick Start Install Guide](docs/INSTALL_QUICK_START.md)** — step-by-step instructions for Codex, Claude Code, and AGENTS.md agents
-- **[Codex Global Install](install/codex-global.md)** — detailed guide for global Codex setup
-- **[Codex Repo-Level Install](install/codex-repo.md)** — team or project-specific setup
-- **[Claude Code Install](install/claude-code.md)** — portable instruction setup
-- **[Generic AGENTS.md Install](install/generic-agents-md.md)** — any compatible agent framework
+## Installation And Setup Help
+
+For Codex, start with the quick-start guide:
+
+- Global install: use this when you want Codex instructed to run Smart Skill Preflight before each task or session.
+- Repo-level install: use this when one project needs its own local rules.
+
+For Claude Code or generic agent workflows, copy the matching template into your project guidance file.
+
+If setup does not work, include this in your issue:
+
+- operating system
+- install path used: global Codex, repo-level Codex, Claude Code, or generic AGENTS.md
+- whether the skill file exists in the expected location
+- whether the guidance file contains `Smart Skill Preflight`
+- the exact command you ran, with private paths and secrets removed
 
 ## Usage Questions
 
-Check the main [README.md](README.md) for:
+Good usage questions include:
 
-- **What it does** — the preflight workflow and routing logic
-- **How it works** — step-by-step process
-- **Examples** — real task scenarios (mobile, SEO, media, cleanup, deploy)
-- **Safety model** — approval gates and validation rules
-- **Token efficiency** — context optimization principles
-- **Limitations** — what it can and cannot do
+- how to adapt Smart Skill Preflight for a specific repo structure
+- how to keep repo guidance short
+- how to choose approval gates for deploys, visual work, cleanup, or connectors
+- how to verify that Codex is loading the user-level or repo-level guidance
+- how to use the routing matrix for a new task type
 
-See [docs/skill-routing-matrix.md](docs/skill-routing-matrix.md) for the full routing reference.
+Please avoid posting private project names, client names, local paths, screenshots, videos, logs with secrets, or credentials.
 
-## Validation & Troubleshooting
+## Validation And Troubleshooting
 
-Run these commands to verify your setup:
+Run the local validation checks before opening a bug when possible:
 
 ```bash
-# Validate repository integrity
 python scripts/validate-repo.py
-
-# Run tests
 python -m pytest
-
-# Check for whitespace issues
 git --no-pager diff --check
 ```
 
-Expected result:
+For global Codex installs, use this verification prompt in a new Codex session:
 
-- Smart Skill Preflight appears in your agent's loaded instructions
-- Your agent confirms scope before starting
-- Your agent selects a relevant skill stack
-- Your agent skips irrelevant skills
-- No files are edited during the preflight step
+```text
+Before doing anything, list the instruction sources and skills you loaded. Then run Smart Skill Preflight for this task: update a mobile homepage hero. Do not edit files.
+```
+
+Expected behavior:
+
+- Codex mentions Smart Skill Preflight or the relevant guidance.
+- Codex confirms scope.
+- Codex selects a relevant skill or skill stack.
+- Codex skips irrelevant skills.
+- Codex edits no files.
 
 If validation fails, check:
 
-1. Correct file paths (global vs. repo-level)
-2. Correct branch (usually `master` or `main`)
-3. Correct syntax in your `AGENTS.md` or `CLAUDE.md`
-4. Agent version compatibility
+- the intended install path: global or repo-level
+- the current branch
+- syntax in `AGENTS.md` or `CLAUDE.md`
+- whether the agent supports the instruction file you edited
 
-## Report Issues
+## Issues, Feedback, And Contributions
 
-Found a bug or have a suggestion?
+Use GitHub issues for:
 
-1. **Search existing issues** — your question might already be answered
-2. **Check the FAQ** — common questions and answers
-3. **Open a new issue** — describe:
-   - What you tried
-   - What you expected
-   - What happened instead
-   - Your agent framework (Codex, Claude Code, other AGENTS.md)
-   - Your OS and shell (if relevant)
+- installation problems
+- unclear docs
+- missing examples
+- confusing approval-gate behavior
+- safe feature requests
 
-## Share Feedback & Examples
+Pull requests are welcome for:
 
-Help others by:
+- docs improvements
+- install examples
+- validation tests
+- small templates that stay generic and public-safe
 
-- **Adding examples** — submit a focused example of a task your team runs frequently
-- **Improving docs** — fix typos, clarify steps, add screenshots
-- **Sharing your skill routing** — if you've customized the matrix for your workflow, consider sharing it
-- **Testing in new environments** — let us know if you've set this up with Cursor, Continue, or other agents
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening larger changes.
 
 ## Documentation
 
-- **[Launch Copy & Announcements](docs/LAUNCH_ANNOUNCEMENTS.md)** — share the project
-- **[Skill Routing Matrix](docs/skill-routing-matrix.md)** — full task-to-skill reference
-- **[Safety & Approval Gates](docs/safety-and-approval-gates.md)** — approval rules and validation
-- **[Token Efficiency Model](docs/token-efficiency.md)** — context optimization
-- **[Auto-Research Loop](docs/auto-research-loop.md)** — optional self-improvement workflow
-- **[Self-Improvement Policy](docs/self-improvement-policy.md)** — guardrails for research
+- [Launch Copy](docs/LAUNCH_COPY.md)
+- [Launch Announcements](docs/LAUNCH_ANNOUNCEMENTS.md)
+- [Auto-Research Loop](docs/auto-research-loop.md)
+- [Self-Improvement Policy](docs/self-improvement-policy.md)
+- [Codex vs Claude Code](docs/codex-vs-claude-code.md)
 
-## Community & Code of Conduct
+## Code Of Conduct
 
-Smart Skill User is committed to fostering a welcoming, inclusive community.
-
-- **[Code of Conduct](CODE_OF_CONDUCT.md)** — community guidelines
-- **[Contributing](CONTRIBUTING.md)** — how to contribute code, examples, and docs
-- **[Security Policy](SECURITY.md)** — reporting security issues responsibly
-
-## Support the Project
-
-You can support Smart Skill User by:
-
-- **Starring the repo** — helps others discover it
-- **Sharing feedback** — open issues, suggest improvements, share your use cases
-- **Contributing** — add examples, improve docs, submit fixes
-- **Spreading the word** — share in your team, community, or social networks
-
-See [docs/LAUNCH_ANNOUNCEMENTS.md](docs/LAUNCH_ANNOUNCEMENTS.md) for ready-to-share copy.
+Participation is covered by the project [Code of Conduct](CODE_OF_CONDUCT.md). Keep discussions respectful, specific, and useful for maintainers and other users.
 
 ## License
 
-Smart Skill User is open-source under the [MIT License](LICENSE). You are free to use, modify, and distribute it in commercial and personal projects.
+Smart Skill User is MIT licensed. See [LICENSE](LICENSE).
 
-## Questions?
+## Support The Project
 
-If you can't find an answer:
+The best ways to support Smart Skill User are simple:
 
-1. Search [closed issues](https://github.com/GunsNR/smart-skill-user/issues?q=is%3Aissue+is%3Aclosed)
-2. Open a new [discussion or issue](https://github.com/GunsNR/smart-skill-user/issues)
-3. Check the [README](README.md) examples and routing matrix
+- star the repository
+- share feedback from real workflows
+- open clear issues when something is confusing
+- contribute examples or documentation
+- share the repo with developers who manage multi-project AI coding workflows
 
-Thanks for using Smart Skill User.
+## Questions
+
+If you cannot find an answer, search existing GitHub issues first, then open a focused issue with the relevant setup details.

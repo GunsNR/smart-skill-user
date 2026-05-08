@@ -41,3 +41,7 @@ No. That is the point. The agent should choose the best single skill for narrow 
 ## Can I use this in private repos?
 
 Yes. Keep private details in your private repo guidance, not in this public package.
+
+## Where do I ask for help?
+
+Start with [SUPPORT.md](../SUPPORT.md). It explains installation help, troubleshooting, issue reports, contribution ideas, and the project support model.

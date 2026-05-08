@@ -75,6 +75,14 @@ Expected result:
 - Codex skips irrelevant skills.
 - Codex edits no files.
 
+## Quick Links
+
+- [Install Quick Start](docs/INSTALL_QUICK_START.md)
+- [Support](SUPPORT.md)
+- [FAQ](docs/faq.md)
+- [Launch Copy](docs/LAUNCH_COPY.md)
+- [Launch Announcements](docs/LAUNCH_ANNOUNCEMENTS.md)
+
 ## Before And After
 
 **User prompt**
@@ -262,6 +270,8 @@ Codex skills, Claude Code instructions, AGENTS.md, AI coding agents, agent skill
 ## Contributing
 
 Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md), keep examples generic, and avoid adding private customer or workspace data.
+
+For setup help, usage questions, and feedback guidance, see [SUPPORT.md](SUPPORT.md).
 
 ## License
 

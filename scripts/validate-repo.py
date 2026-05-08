@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED_FILES = [
     "README.md",
+    "SUPPORT.md",
     "LICENSE",
     "CHANGELOG.md",
     "CONTRIBUTING.md",
@@ -30,6 +31,9 @@ REQUIRED_FILES = [
     "examples/deployment-task.md",
     "examples/wrong-scope-task.md",
     "docs/how-it-works.md",
+    "docs/INSTALL_QUICK_START.md",
+    "docs/LAUNCH_COPY.md",
+    "docs/LAUNCH_ANNOUNCEMENTS.md",
     "docs/skill-routing-matrix.md",
     "docs/token-efficiency.md",
     "docs/safety-and-approval-gates.md",
