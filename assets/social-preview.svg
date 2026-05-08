@@ -1,23 +1,140 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
   <title id="title">Smart Skill User</title>
-  <desc id="desc">Token-aware skill routing for AI coding agents</desc>
-  <rect width="1200" height="630" fill="#101418"/>
-  <rect x="70" y="70" width="1060" height="490" rx="28" fill="#f7f4ec"/>
-  <text x="115" y="160" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="58" font-weight="800" fill="#111827">Smart Skill User</text>
-  <text x="118" y="214" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" fill="#3d4752">Token-aware skill routing for AI coding agents</text>
-  <g font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">
-    <rect x="120" y="320" width="180" height="74" rx="10" fill="#dfe7fd"/>
-    <text x="158" y="366" fill="#1d315f">prompt</text>
-    <path d="M315 357h95" stroke="#111827" stroke-width="6" stroke-linecap="round"/>
-    <path d="M396 340l24 17-24 17" fill="none" stroke="#111827" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="440" y="300" width="220" height="114" rx="10" fill="#d8efe4"/>
-    <text x="490" y="348" fill="#153f2a">preflight</text>
-    <text x="490" y="382" font-size="18" fill="#2f5f46">scope + task type</text>
-    <path d="M675 357h95" stroke="#111827" stroke-width="6" stroke-linecap="round"/>
-    <path d="M756 340l24 17-24 17" fill="none" stroke="#111827" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="800" y="300" width="250" height="114" rx="10" fill="#fdecc8"/>
-    <text x="840" y="348" fill="#5a3a0a">selected skills</text>
-    <text x="840" y="382" font-size="18" fill="#76521b">safer execution</text>
+  <desc id="desc">A dark GitHub social preview for Smart Skill User showing a prompt routed through Smart Skill Preflight into selected skills while unused skills are skipped.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06111f"/>
+      <stop offset="0.52" stop-color="#0a1020"/>
+      <stop offset="1" stop-color="#090b12"/>
+    </linearGradient>
+    <radialGradient id="aquaGlow" cx="72%" cy="39%" r="45%">
+      <stop offset="0" stop-color="#38f5d0" stop-opacity="0.34"/>
+      <stop offset="0.48" stop-color="#2f80ed" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111c2f" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#0d1423" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="preflight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#35f3ce"/>
+      <stop offset="1" stop-color="#60a5fa"/>
+    </linearGradient>
+    <linearGradient id="skill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17283a"/>
+      <stop offset="1" stop-color="#102038"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#020617" flood-opacity="0.45"/>
+    </filter>
+    <filter id="selectedGlow" x="-60%" y="-80%" width="220%" height="260%">
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#38f5d0" flood-opacity="0.46"/>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#7dd3fc" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M1 1l10 5-10 5z" fill="#55e6d1"/>
+    </marker>
+    <marker id="mutedArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M1 1l10 5-10 5z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <g id="background">
+    <rect width="1280" height="640" fill="url(#bg)"/>
+    <rect width="1280" height="640" fill="url(#grid)"/>
+    <rect width="1280" height="640" fill="url(#aquaGlow)"/>
+    <circle cx="1088" cy="102" r="160" fill="#2563eb" opacity="0.08"/>
+    <circle cx="732" cy="566" r="210" fill="#38f5d0" opacity="0.07"/>
   </g>
-  <text x="118" y="510" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" fill="#374151">Confirm scope. Load less. Avoid wrong-repo drift.</text>
+
+  <g id="left-copy" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif">
+    <rect x="56" y="56" width="510" height="528" rx="28" fill="#07111f" opacity="0.7" stroke="#1f3550"/>
+    <text x="96" y="142" fill="#8be9dc" font-size="17" font-weight="800" letter-spacing="2.4">TOKEN-AWARE PREFLIGHT ROUTER</text>
+    <text x="96" y="222" fill="#f8fafc" font-size="72" font-weight="850">Smart</text>
+    <text x="96" y="296" fill="#f8fafc" font-size="72" font-weight="850">Skill User</text>
+    <text x="99" y="352" fill="#b9c7d8" font-size="27" font-weight="500">Token-aware skill routing</text>
+    <text x="99" y="388" fill="#b9c7d8" font-size="27" font-weight="500">for AI coding agents</text>
+
+    <g id="badges" font-size="18" font-weight="750">
+      <rect x="96" y="438" width="92" height="38" rx="19" fill="#102237" stroke="#2a4968"/>
+      <text x="120" y="463" fill="#dbeafe">Codex</text>
+      <rect x="200" y="438" width="146" height="38" rx="19" fill="#102237" stroke="#2a4968"/>
+      <text x="224" y="463" fill="#dbeafe">Claude Code</text>
+      <rect x="358" y="438" width="122" height="38" rx="19" fill="#102237" stroke="#2a4968"/>
+      <text x="382" y="463" fill="#dbeafe">AGENTS.md</text>
+    </g>
+
+    <text x="96" y="532" fill="#e2e8f0" font-size="23" font-weight="650">Choose the right skills before</text>
+    <text x="96" y="563" fill="#e2e8f0" font-size="23" font-weight="650">the agent starts.</text>
+  </g>
+
+  <g id="routing-diagram" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif" filter="url(#softShadow)">
+    <rect x="608" y="72" width="616" height="496" rx="30" fill="url(#panel)" stroke="#233a57"/>
+
+    <g id="prompt-card">
+      <rect x="652" y="258" width="138" height="82" rx="18" fill="#101d31" stroke="#35516f"/>
+      <circle cx="683" cy="299" r="11" fill="#7dd3fc"/>
+      <text x="706" y="293" fill="#e5edf8" font-size="19" font-weight="780">Prompt</text>
+      <text x="706" y="319" fill="#8ea2b8" font-size="14" font-weight="600">user task</text>
+    </g>
+
+    <path d="M802 299 C833 299 837 299 866 299" stroke="#55e6d1" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+    <g id="preflight-card">
+      <rect x="878" y="224" width="204" height="150" rx="22" fill="#071321" stroke="#55e6d1" stroke-opacity="0.7" stroke-width="2"/>
+      <rect x="894" y="240" width="172" height="36" rx="18" fill="url(#preflight)" opacity="0.95"/>
+      <text x="914" y="264" fill="#06111f" font-size="17" font-weight="850">Smart Skill</text>
+      <text x="922" y="314" fill="#f8fafc" font-size="27" font-weight="850">Preflight</text>
+      <text x="918" y="342" fill="#9fb4ca" font-size="14" font-weight="650">scope + task type</text>
+    </g>
+
+    <g id="selected-routes" stroke="#55e6d1" stroke-width="3" fill="none" marker-end="url(#arrow)" opacity="0.95">
+      <path d="M1084 286 C1108 248 1118 226 1144 202"/>
+      <path d="M1087 300 C1113 292 1120 284 1146 276"/>
+      <path d="M1087 316 C1113 326 1120 334 1146 344"/>
+      <path d="M1082 335 C1105 374 1116 402 1144 432"/>
+    </g>
+
+    <g id="selected-skills" font-size="18" font-weight="780" filter="url(#selectedGlow)">
+      <rect x="1142" y="174" width="70" height="42" rx="21" fill="url(#skill)" stroke="#55e6d1"/>
+      <text x="1157" y="201" fill="#ecfeff">Scope</text>
+      <rect x="1148" y="252" width="58" height="42" rx="21" fill="url(#skill)" stroke="#55e6d1"/>
+      <text x="1161" y="279" fill="#ecfeff">CRO</text>
+      <rect x="1148" y="322" width="58" height="42" rx="21" fill="url(#skill)" stroke="#55e6d1"/>
+      <text x="1161" y="349" fill="#ecfeff">SEO</text>
+      <rect x="1134" y="407" width="78" height="42" rx="21" fill="url(#skill)" stroke="#55e6d1"/>
+      <text x="1151" y="434" fill="#ecfeff">Media</text>
+      <rect x="1014" y="414" width="86" height="42" rx="21" fill="url(#skill)" stroke="#55e6d1"/>
+      <text x="1032" y="441" fill="#ecfeff">Review</text>
+    </g>
+
+    <g id="skipped-routes" stroke="#64748b" stroke-width="2.5" stroke-dasharray="6 9" fill="none" marker-end="url(#mutedArrow)" opacity="0.62">
+      <path d="M924 375 C902 416 872 444 824 466"/>
+      <path d="M972 376 C964 430 948 464 910 494"/>
+      <path d="M1032 370 C1047 423 1064 458 1106 488"/>
+    </g>
+
+    <g id="skipped-skills" font-size="16" font-weight="760" opacity="0.64">
+      <rect x="734" y="452" width="86" height="38" rx="19" fill="#111827" stroke="#526174"/>
+      <text x="755" y="476" fill="#9aa7b7">Deploy</text>
+      <rect x="856" y="486" width="64" height="38" rx="19" fill="#111827" stroke="#526174"/>
+      <text x="874" y="510" fill="#9aa7b7">CRM</text>
+      <rect x="1100" y="478" width="82" height="38" rx="19" fill="#111827" stroke="#526174"/>
+      <text x="1118" y="502" fill="#9aa7b7">Unused</text>
+    </g>
+
+    <g id="metrics-strip" font-size="15" font-weight="720">
+      <rect x="652" y="105" width="530" height="58" rx="18" fill="#091526" stroke="#1c314a"/>
+      <text x="682" y="140" fill="#93c5fd">confirm scope</text>
+      <circle cx="808" cy="133" r="4" fill="#38f5d0"/>
+      <text x="828" y="140" fill="#a7f3d0">load less</text>
+      <circle cx="918" cy="133" r="4" fill="#38f5d0"/>
+      <text x="938" y="140" fill="#c4b5fd">skip noise</text>
+      <circle cx="1040" cy="133" r="4" fill="#38f5d0"/>
+      <text x="1060" y="140" fill="#fde68a">execute safer</text>
+    </g>
+  </g>
 </svg>

@@ -5,6 +5,8 @@
 [![CI ready](https://img.shields.io/badge/CI-ready-blue.svg)](.github/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+![Smart Skill User social preview](assets/social-preview.svg)
+
 Smart Skill User is a token-aware preflight skill router for AI coding agents. It gives Codex, Claude Code, and AGENTS.md-style workflows a small first step: confirm scope, classify the task, select only the relevant skills or instructions, enforce approval gates, and avoid loading the entire instruction universe into context.
 
 ## Why This Exists
