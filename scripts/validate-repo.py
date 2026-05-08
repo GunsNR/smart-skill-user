@@ -33,17 +33,25 @@ REQUIRED_FILES = [
     "docs/skill-routing-matrix.md",
     "docs/token-efficiency.md",
     "docs/safety-and-approval-gates.md",
+    "docs/auto-research-loop.md",
+    "docs/self-improvement-policy.md",
     "docs/codex-vs-claude-code.md",
     "docs/faq.md",
+    "config/research-sources.yml",
     "scripts/install-codex-global.ps1",
     "scripts/install-codex-global.sh",
     "scripts/validate-repo.py",
+    "scripts/auto_research.py",
     "tests/test_repo_integrity.py",
+    "tests/test_auto_research.py",
     "assets/social-preview.svg",
     ".github/workflows/ci.yml",
+    ".github/workflows/auto-research.yml",
     ".github/ISSUE_TEMPLATE/bug_report.md",
     ".github/ISSUE_TEMPLATE/feature_request.md",
     ".github/pull_request_template.md",
+    "skills/auto-research-loop/SKILL.md",
+    "research/.gitignore",
 ]
 
 PRIVATE_PATTERNS = [
@@ -69,7 +77,7 @@ def read_text(path: Path) -> str:
 
 
 def iter_text_files() -> list[Path]:
-    ignored_parts = {".git", "__pycache__", ".pytest_cache"}
+    ignored_parts = {".git", "__pycache__", ".pytest_cache", ".cache"}
     return [
         path
         for path in ROOT.rglob("*")
@@ -106,6 +114,7 @@ def validate_readme_sections() -> None:
         "Install: Generic AGENTS.md",
         "Token-Efficiency Model",
         "Safety Model",
+        "Optional Auto-Research Loop",
         "Launch Copy",
     ]
     missing = [section for section in required if section not in readme]

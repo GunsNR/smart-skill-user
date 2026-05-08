@@ -1,0 +1,68 @@
+name: Auto Research
+
+on:
+  workflow_dispatch:
+    inputs:
+      offline:
+        description: "Run without network access"
+        required: true
+        default: true
+        type: boolean
+      refresh_cache:
+        description: "Refresh cached public metadata when online"
+        required: true
+        default: false
+        type: boolean
+  schedule:
+    - cron: "17 14 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: auto-research
+  cancel-in-progress: false
+
+jobs:
+  research-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/cache@v4
+        with:
+          path: .cache/auto-research
+          key: auto-research-${{ runner.os }}-${{ hashFiles('config/research-sources.yml') }}
+          restore-keys: |
+            auto-research-${{ runner.os }}-
+
+      - name: Generate report
+        shell: bash
+        run: |
+          OFFLINE_FLAG=""
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.offline }}" == "true" ]]; then
+            OFFLINE_FLAG="--offline"
+          fi
+
+          REFRESH_FLAG=""
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.refresh_cache }}" == "true" ]]; then
+            REFRESH_FLAG="--refresh-cache"
+          fi
+
+          python scripts/auto_research.py \
+            --dry-run \
+            ${OFFLINE_FLAG} \
+            ${REFRESH_FLAG} \
+            --output research/auto-research-latest.md
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: auto-research-report
+          path: research/auto-research-latest.md
+          if-no-files-found: error
+          retention-days: 14

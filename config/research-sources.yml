@@ -1,0 +1,43 @@
+version: 1
+
+defaults:
+  cache_ttl_hours: 168
+  max_items_per_source: 5
+  max_bytes_per_item: 12000
+  request_timeout_seconds: 10
+
+sources:
+  - id: karpathy-public-github
+    label: Karpathy public GitHub repositories
+    type: github_user
+    enabled: true
+    user: karpathy
+    url: https://github.com/karpathy
+    api_url: https://api.github.com/users/karpathy/repos?sort=updated&per_page=8
+    allowed_hosts: [github.com, api.github.com]
+    fetch_strategy: metadata_only
+    license_sensitivity: high
+    research_focus: [teaching_style, minimal_examples, repo_safety, evaluation]
+    notes: Public metadata only. Do not clone repositories or copy code without license review and maintainer approval.
+  - id: smart-skill-user-public-repo
+    label: Smart Skill User public repository metadata
+    type: github_repo
+    enabled: true
+    repo: GunsNR/smart-skill-user
+    url: https://github.com/GunsNR/smart-skill-user
+    api_url: https://api.github.com/repos/GunsNR/smart-skill-user
+    allowed_hosts: [github.com, api.github.com]
+    fetch_strategy: metadata_only
+    license_sensitivity: low
+    research_focus: [docs_quality, workflow_safety, tests]
+    notes: Compare public repo metadata and project positioning only. Do not create issues or pull requests.
+  - id: github-actions-public-docs
+    label: GitHub Actions public documentation
+    type: web_page
+    enabled: true
+    url: https://docs.github.com/en/actions
+    allowed_hosts: [docs.github.com]
+    fetch_strategy: bounded_text
+    license_sensitivity: medium
+    research_focus: [workflow_safety, artifacts, permissions]
+    notes: Read bounded public documentation excerpts only. Prefer links and summaries over copied text.

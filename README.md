@@ -163,6 +163,24 @@ Smart Skill User favors:
 
 See [docs/token-efficiency.md](docs/token-efficiency.md).
 
+## Optional Auto-Research Loop
+
+Smart Skill User now includes an optional self-improvement loop that generates reviewable research reports from approved public sources. It is report-only by default: it does not commit changes, push branches, open pull requests, publish releases, create issues, or copy external code.
+
+Run an offline dry run locally:
+
+```bash
+python scripts/auto_research.py --offline --dry-run --output research/auto-research-latest.md
+```
+
+The source allowlist lives in [config/research-sources.yml](config/research-sources.yml). It includes a configurable `karpathy-public-github` source for public GitHub repository metadata from the GitHub user `karpathy`. That source is marked `metadata_only` with high license sensitivity, so the loop can generate original improvement ideas without cloning repositories or copying code.
+
+Generated reports are written under `research/` and classify ideas by impact, risk, effort, source, and license sensitivity. Online runs use bounded public metadata and `.cache/auto-research` to avoid repeated source reads.
+
+The GitHub Action in [.github/workflows/auto-research.yml](.github/workflows/auto-research.yml) can be run manually and also runs on a quiet weekly schedule. It has read-only repository permissions and uploads the report as an artifact instead of changing the repository.
+
+See [docs/auto-research-loop.md](docs/auto-research-loop.md) and [docs/self-improvement-policy.md](docs/self-improvement-policy.md).
+
 ## Limitations
 
 - It is an instruction workflow, not a permissions sandbox.
@@ -174,7 +192,7 @@ See [docs/token-efficiency.md](docs/token-efficiency.md).
 ## Roadmap
 
 - More routing examples for backend, data, and security tasks
-- Optional repo scanner for skill inventory summaries
+- More optional source adapters for safe, public research reports
 - More install helpers for team templates
 - Example pull request showing a before/after agent workflow
 
