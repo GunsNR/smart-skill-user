@@ -95,6 +95,39 @@ For simpler single-purpose projects, the preflight block in `CLAUDE.md` alone is
 
 ---
 
+## Optional: Auto-Research Loop
+
+Smart Skill User includes an optional self-improvement loop that generates reviewable research reports from approved public sources. It is report-only by default.
+
+### Install the skill
+
+Copy `skills/auto-research-loop/SKILL.md` to:
+
+```text
+your-repo/.agents/skills/auto-research-loop/SKILL.md
+```
+
+Or add it to the install prompt:
+
+```text
+Install Smart Skill User in this repo. Copy the skill to .agents/skills/smart-skill-user/SKILL.md, copy the auto-research skill to .agents/skills/auto-research-loop/SKILL.md, add Smart Skill Preflight as the first step in CLAUDE.md, validate, and do not modify product code.
+```
+
+### Run a dry run
+
+```bash
+python scripts/auto_research.py --offline --dry-run --output research/auto-research-latest.md
+```
+
+Reports are written under `research/`. The skill enforces these gates:
+
+- report-only by default
+- does not commit, push, open PRs, or publish
+- does not copy external code without license review
+- explicit maintainer approval required before implementing any idea
+
+---
+
 ## See Also
 
 - [Repo-level Codex install](codex-repo.md)

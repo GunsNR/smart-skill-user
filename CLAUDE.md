@@ -40,6 +40,18 @@ Active surfaces:
 - unclear scope: stop and ask
 - product code changes: do not modify without explicit instruction
 
+## Optional: Auto-Research Loop
+
+To generate a report-only self-improvement analysis from approved public sources:
+
+```bash
+python scripts/auto_research.py --offline --dry-run --output research/auto-research-latest.md
+```
+
+Full rules: `.agents/skills/auto-research-loop/SKILL.md`
+
+This skill does not authorize commits, pull requests, releases, or copied external code. Reports only. Explicit maintainer approval required before implementing any idea.
+
 ## Release Safety
 
 Do not publish packages, create remotes, push to GitHub, or deploy anything without explicit maintainer approval.
