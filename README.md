@@ -206,11 +206,15 @@ See [install/codex-repo.md](install/codex-repo.md).
 
 ## Install: Claude Code
 
-Smart Skill User is portable to Claude Code through `CLAUDE.md`. This repo does not claim native Claude skill support; it provides a compatible instruction pack.
+Smart Skill User works with Claude Code as a portable instruction pack. Paste this into Claude Code inside your project:
 
-Copy the relevant parts of [templates/CLAUDE.md](templates/CLAUDE.md) into your project `CLAUDE.md`.
+```text
+Install Smart Skill User in this repo. Copy the skill to .agents/skills/smart-skill-user/SKILL.md, add Smart Skill Preflight as the first step in CLAUDE.md, validate, and do not modify product code.
+```
 
-See [install/claude-code.md](install/claude-code.md).
+Claude Code will copy the skill, update your `CLAUDE.md`, and validate without touching product code.
+
+For a manual step-by-step install, see [install/claude-code.md](install/claude-code.md). The preflight template is at [templates/CLAUDE.md](templates/CLAUDE.md).
 
 ## Install: Generic AGENTS.md
 
