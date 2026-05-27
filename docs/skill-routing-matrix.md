@@ -1,6 +1,6 @@
 # Skill Routing Matrix
 
-Smart Skill User picks the best skill (or smallest stack) per task. Repositories adapt names to their own ecosystem; defaults below name the top-10 skills from [`TOP_SKILLS.md`](TOP_SKILLS.md).
+Smart Skill User picks the best skill (or smallest stack) per task. Repositories adapt names to their own ecosystem; defaults below name the top-14 skills from [`TOP_SKILLS.md`](TOP_SKILLS.md).
 
 ## Always-On Stack (Token Savers)
 
@@ -23,8 +23,10 @@ The preflight always assumes these four are active and does not re-list them in 
 | SEO content brief | `coreyhaines31/marketingskills` (seo-content-brief, ai-seo) + Semrush MCP | deploy, media | source-truth required |
 | SEO schema/structured data | `AgriciDaniel/claude-seo` (schema sub-skill) | copy, ads | validate via rich-results |
 | Marketing copy / draft content | `knowledge-work-plugins/marketing` (draft-content) + `coreyhaines31/marketingskills` (copywriting) | SEO technical, deploy | brand-voice check |
+| Blog post / long-form content | `AgriciDaniel/claude-blog` (5-gate delivery contract) | technical SEO audit | brand-voice + AI-citation check |
 | Landing-page CRO | `coreyhaines31/marketingskills` (page-cro, signup-flow-cro) | deploy, database | preview before commit |
 | Ad creative (Google/Meta/LinkedIn) | `coreyhaines31/marketingskills` (ad-creative) | technical SEO | preview before publish |
+| Paid-ads audit / optimization | `AgriciDaniel/claude-ads` (Google/Meta/YouTube/LinkedIn/TikTok/Microsoft/Apple) | organic SEO | preview before publish; no fake spend claims |
 | Email sequence / cold outreach | `coreyhaines31/marketingskills` (email-sequence, cold-email) | technical SEO | spam-policy check |
 | Competitor teardown | `coreyhaines31/marketingskills` (competitor-profiling) + Semrush MCP | unrelated live tools | source-truth required |
 | AI-citation / GEO tracking | SurgeGraph skill | classic-SEO-only tools | no fake metrics |
@@ -33,8 +35,10 @@ The preflight always assumes these four are active and does not re-list them in 
 | Research / source-truth | `auto-research-loop` + `read-arxiv-paper` | implementation skills | cite sources; report-only |
 | Read an arXiv paper | `karpathy/nanochat → read-arxiv-paper` | implementation skills | summarize then link |
 | AI / LLM learning task | `read-arxiv-paper` + `andrej-karpathy-skills` | product code | think before coding |
+| Personal knowledge / second-brain | `eugeniughelbur/obsidian-second-brain` | product code, marketing | local-vault only; no external publish |
 | Code work (general) | `obra/superpowers` (plan + TDD) + `andrej-karpathy-skills` (anti-pitfalls) | marketing skills | plan before code |
-| Large-codebase search | rely on `claude-context` MCP; subagent for spread reads | broad file reads | none |
+| Large-codebase search | `safishamsi/graphify` (knowledge-graph) preferred for monorepos; `claude-context` MCP otherwise; subagent for spread reads | broad file reads | none |
+| Codebase onboarding / architecture map | `safishamsi/graphify` (Leiden community detection) | marketing skills | none |
 | Cleanup / revert | `obra/superpowers` (systematic-debugging) | visual unless affected | backup patch first |
 | Deploy / release | repo CI conventions only | unrelated docs | explicit approval |
 | Tests / validation | repo test workflow | deploy | smallest meaningful checks |

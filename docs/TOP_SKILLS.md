@@ -1,6 +1,6 @@
-# Top 10 Skills (May 2026)
+# Top 14 Skills (May 2026)
 
-Curated reference list of the absolute best Claude / Claude Code skills to add on top of Smart Skill User. Selected for a solo operator working on SEO, marketing, AI learning, and token-efficient workflows.
+Curated reference list of the absolute best Claude / Claude Code skills to add on top of Smart Skill User. Selected for a solo operator working on SEO, marketing, AI learning, and token-efficient workflows. Entries 1-10 are the foundational stack; entries 11-14 are May 2026 trending additions verified active in the past 30 days.
 
 To install all of them on a machine, run:
 
@@ -88,7 +88,41 @@ See [`install/top-skills.md`](../install/top-skills.md) for full details and the
 
 ---
 
-## Honorable Mentions (skipped from top 10)
+## May 2026 Trending Additions
+
+Skills with verified shipping activity April 26 - May 26, 2026. Each is graded A on novelty vs entries 1-10, maintenance, and fit.
+
+### 11. `safishamsi/graphify`
+
+- Source: <https://github.com/safishamsi/graphify> ([releases](https://github.com/safishamsi/graphify/releases))
+- Dates: 12 releases (v0.8.9 - v0.8.20) shipped May 17 - 26, 2026.
+- One-line: builds a queryable local knowledge graph of any codebase (AST + Leiden community detection) so Claude reads the graph instead of grepping; 6.8x - 49x token reduction.
+- Why: 54k stars, daily-ship cadence, distinct from `claude-context` (vector search) — Graphify is local-only, no Milvus / embedding API costs. Doubles as a token-saver and an AI-learning aid.
+
+### 12. `AgriciDaniel/claude-blog`
+
+- Source: <https://github.com/AgriciDaniel/claude-blog>
+- Dates: v1.9.0 May 18, 2026; v1.9.1 May 20, 2026.
+- One-line: blog production suite (30 sub-skills, 5 agents) with a 5-gate Blog Delivery Contract dual-optimized for Google rankings and AI citations.
+- Why: complements `claude-seo` (audit) with production; same maintainer's CI-enforced quality gates. Fills the "actually write the post" gap.
+
+### 13. `AgriciDaniel/claude-ads`
+
+- Source: <https://github.com/AgriciDaniel/claude-ads>
+- Dates: v1.7.1 May 18, 2026.
+- One-line: paid-ads audit + optimization across Google, Meta, YouTube, LinkedIn, TikTok, Microsoft, Apple Ads — 250+ checks, parallel agents, AI creative generation.
+- Why: 5.3k stars, fills the paid-channel gap in entries 4-7 (which all skew organic). Same maintainer pattern as `claude-seo` / `claude-blog`.
+
+### 14. `eugeniughelbur/obsidian-second-brain`
+
+- Source: <https://github.com/eugeniughelbur/obsidian-second-brain>
+- Dates: v0.8.0 May 15, 2026.
+- One-line: cross-CLI Obsidian skill (Claude Code, Codex, Gemini, OpenCode) that turns a vault into an AI-first second brain — 33 commands, scheduled agents, write-time validator.
+- Why: persistent personal-knowledge layer (distinct from `claude-mem`'s session continuity). Cross-agent compatibility matches Smart Skill User's multi-agent stance.
+
+---
+
+## Honorable Mentions (skipped from top 14)
 
 | Skill | Why not in top 10 |
 |---|---|
@@ -97,6 +131,9 @@ See [`install/top-skills.md`](../install/top-skills.md) for full details and the
 | `aaron-he-zhu/seo-geo-claude-skills` | Largely covered by #5 + #6. |
 | `anthropics/skills → skill-creator` | Install when you start packaging your own SOPs. |
 | `hesreallyhim/awesome-claude-code` | Bookmark for ongoing discovery, not a skill. |
+| `AgriciDaniel/claude-obsidian` | Last release April 24, 2026 — 2 days outside the 30-day trending window. Re-evaluate next cycle. |
+| `remotion-dev/skills` | May 7, 2026 update verified, but video-production focus is weak fit for stated areas. |
+| `anthropics → Skill Creator` | May 2026 release, meta-tool for building skills — install only when you start packaging your own. |
 
 ---
 

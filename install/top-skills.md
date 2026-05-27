@@ -1,6 +1,6 @@
-# Install Top 10 Skills
+# Install Top 14 Skills
 
-This install guide adds the curated top 10 Claude / Claude Code skills documented in [`docs/TOP_SKILLS.md`](../docs/TOP_SKILLS.md) to your local environment. It is additive — it does not modify Smart Skill User itself, and it does not push or deploy anything.
+This install guide adds the curated top 14 Claude / Claude Code skills documented in [`docs/TOP_SKILLS.md`](../docs/TOP_SKILLS.md) to your local environment. Entries 1-10 are the foundational stack; entries 11-14 are May 2026 trending additions. It is additive — it does not modify Smart Skill User itself, and it does not push or deploy anything.
 
 Run the script on every machine where you use Claude Code (laptop, desktop, dev workstation, anywhere `~/.claude` lives). Claude on web / iOS / Android cannot host local skills, so this targets the Claude Code CLI / desktop install only.
 
@@ -42,6 +42,8 @@ pwsh scripts/install-top-skills.ps1 -DryRun
 | 2 | `thedotmack/claude-mem` | `npx claude-mem install` |
 | 3 | `coreyhaines31/marketingskills` | `npx skills add` |
 | 4 | `karpathy/nanochat → read-arxiv-paper` | sparse `git clone` into `~/.claude/skills/read-arxiv-paper` |
+| 11 | `safishamsi/graphify` | `npx skills add` (with manual fallback) |
+| 14 | `eugeniughelbur/obsidian-second-brain` | `npx skills add` (with manual fallback) |
 
 ---
 
@@ -61,6 +63,12 @@ pwsh scripts/install-top-skills.ps1 -DryRun
 
 /plugin marketplace add obra/superpowers
 /plugin install superpowers@claude-plugins-official
+
+/plugin marketplace add AgriciDaniel/claude-blog
+/plugin install claude-blog@claude-blog
+
+/plugin marketplace add AgriciDaniel/claude-ads
+/plugin install claude-ads@claude-ads
 ```
 
 ---
@@ -101,6 +109,10 @@ You should see at least:
 - `claude-seo`
 - `andrej-karpathy-skills`
 - `superpowers`
+- `graphify`
+- `claude-blog`
+- `claude-ads`
+- `obsidian-second-brain`
 
 If a skill is missing, re-run the script with `--dry-run` to confirm the command, then run the failing command on its own to see the error.
 
