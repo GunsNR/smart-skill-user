@@ -10,6 +10,7 @@ Smart Skill User is a lightweight preflight workflow for Codex, Claude Code, and
 
 Choose the install path that matches your workflow:
 
+- [Top 10 Skills](TOP_SKILLS.md): curated companion skills — token savers, SEO/marketing depth, Karpathy guardrails. Install with `bash scripts/install-top-skills.sh`.
 - [npx skills Direct GitHub Install](SKILLS_SH_INSTALL.md): best when you want the standard `skills` CLI to install from `GunsNR/smart-skill-user`.
 - [Codex Global](https://github.com/GunsNR/smart-skill-user/blob/master/install/codex-global.md): best when you want Codex instructed to run Smart Skill Preflight before each task or session.
 - [Codex Repo-Level](https://github.com/GunsNR/smart-skill-user/blob/master/install/codex-repo.md): best when one project needs team or repo-specific guidance.
