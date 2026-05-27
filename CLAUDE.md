@@ -1,5 +1,11 @@
 # CLAUDE.md
 
+## Default Verbosity
+
+Caveman-lite is the default verbosity for this repo. Terse bullet output, no preamble, no narration, no emojis. Single-sentence updates between tool calls. Prefer `file:line` refs over prose. Revert to full explanations only when explicitly asked.
+
+A SessionStart hook in `.claude/settings.json` reinforces this on every Claude Code session.
+
 ## Smart Skill Preflight
 
 Before work, produce a brief preflight:

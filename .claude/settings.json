@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '{\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"Caveman-lite verbosity is ON for this repo. Default to terse bullet output. No preamble, no narration, no emojis. Single-sentence updates between tool calls. Skip greetings and recap sentences. Prefer file:line refs over prose. Revert to full explanations only when explicitly asked.\"}}'"
+          }
+        ]
+      }
+    ]
+  }
+}
