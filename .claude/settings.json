@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '{\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"Smart Skill User defaults are ON for this repo. (1) Caveman-lite verbosity: terse bullets, no preamble, no narration, no emojis, single-sentence updates between tool calls, prefer file:line refs over prose. (2) Always-on token savers: caveman-lite, claude-mem, claude-context (if installed), and subagent delegation for any read/search returning >200 lines. (3) Before any task, run Smart Skill Preflight (scope, task type, selected route, why, skipped, approval, validation) and pick the route from docs/skill-routing-matrix.md - which maps task types to specific top-10 skills from docs/TOP_SKILLS.md. Never load every skill. Revert to full explanations only when explicitly asked.\"}}'"
+          }
+        ]
+      }
+    ]
+  }
+}
