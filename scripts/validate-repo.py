@@ -92,7 +92,7 @@ def iter_text_files() -> list[Path]:
         for path in ROOT.rglob("*")
         if path.is_file()
         and not any(part in ignored_parts for part in path.parts)
-        and path.suffix.lower() not in {".png", ".jpg", ".jpeg", ".gif", ".webp"}
+        and path.suffix.lower() not in {".png", ".jpg", ".jpeg", ".gif", ".webp", ".pdf"}
     ]
 
 
