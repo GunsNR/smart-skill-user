@@ -89,7 +89,14 @@ Follow their safety rules, validation rules, and output expectations. If selecte
 
 ## 5. Save Tokens
 
-Preserve context for the actual task:
+The always-on stack is active on every task — never re-list it in `Selected route`:
+
+- `caveman` (lite) — terse bullet output, set by SessionStart hook
+- `claude-mem` — compressed prior-session context (once installed)
+- `claude-context` — semantic code search MCP (once installed)
+- Subagent delegation — offload large reads/research to keep main context clean
+
+On top of that, preserve context for the actual task:
 
 - avoid broad file reads
 - avoid loading all docs
@@ -98,6 +105,9 @@ Preserve context for the actual task:
 - avoid external tools unless required
 - use targeted searches and targeted file reads
 - summarize validation instead of dumping logs
+- delegate any read or search that returns more than ~200 lines to a subagent
+
+For task → skill mapping, consult [`docs/skill-routing-matrix.md`](../../docs/skill-routing-matrix.md). It names the top-10 skills from [`docs/TOP_SKILLS.md`](../../docs/TOP_SKILLS.md) per task type.
 
 ## 6. Enforce Approval Gates
 
