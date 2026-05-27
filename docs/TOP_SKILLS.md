@@ -1,6 +1,6 @@
-# Top 14 Skills (May 2026)
+# Top 13 Skills (May 2026)
 
-Curated reference list of the absolute best Claude / Claude Code skills to add on top of Smart Skill User. Selected for a solo operator working on SEO, marketing, AI learning, and token-efficient workflows. Entries 1-10 are the foundational stack; entries 11-14 are May 2026 trending additions verified active in the past 30 days.
+Curated reference list of the absolute best Claude / Claude Code skills to add on top of Smart Skill User. Selected for a solo operator working on SEO, marketing, AI learning, and token-efficient workflows. Entries 1-10 are the foundational stack; entries 11-13 are May 2026 trending additions verified active in the past 30 days.
 
 To install all of them on a machine, run:
 
@@ -90,7 +90,7 @@ See [`install/top-skills.md`](../install/top-skills.md) for full details and the
 
 ## May 2026 Trending Additions
 
-Skills with verified shipping activity April 26 - May 26, 2026. Each is graded A on novelty vs entries 1-10, maintenance, and fit.
+Skills with verified shipping activity April 26 - May 26, 2026. Each is graded A on novelty vs entries 1-10, maintenance, and fit. A fourth candidate (`eugeniughelbur/obsidian-second-brain`) was demoted to honorable mentions after Snyk flagged Critical Risk during install — see below.
 
 ### 11. `safishamsi/graphify`
 
@@ -113,18 +113,11 @@ Skills with verified shipping activity April 26 - May 26, 2026. Each is graded A
 - One-line: paid-ads audit + optimization across Google, Meta, YouTube, LinkedIn, TikTok, Microsoft, Apple Ads — 250+ checks, parallel agents, AI creative generation.
 - Why: 5.3k stars, fills the paid-channel gap in entries 4-7 (which all skew organic). Same maintainer pattern as `claude-seo` / `claude-blog`.
 
-### 14. `eugeniughelbur/obsidian-second-brain`
-
-- Source: <https://github.com/eugeniughelbur/obsidian-second-brain>
-- Dates: v0.8.0 May 15, 2026.
-- One-line: cross-CLI Obsidian skill (Claude Code, Codex, Gemini, OpenCode) that turns a vault into an AI-first second brain — 33 commands, scheduled agents, write-time validator.
-- Why: persistent personal-knowledge layer (distinct from `claude-mem`'s session continuity). Cross-agent compatibility matches Smart Skill User's multi-agent stance.
-
 ---
 
-## Honorable Mentions (skipped from top 14)
+## Honorable Mentions (skipped from top 13)
 
-| Skill | Why not in top 10 |
+| Skill | Why not in top 13 |
 |---|---|
 | `uditgoenka/autoresearch` | Overlaps your existing `auto-research-loop`. |
 | `kfchou/wiki-skills` | Excellent for knowledge bases, but niche. |
@@ -134,6 +127,7 @@ Skills with verified shipping activity April 26 - May 26, 2026. Each is graded A
 | `AgriciDaniel/claude-obsidian` | Last release April 24, 2026 — 2 days outside the 30-day trending window. Re-evaluate next cycle. |
 | `remotion-dev/skills` | May 7, 2026 update verified, but video-production focus is weak fit for stated areas. |
 | `anthropics → Skill Creator` | May 2026 release, meta-tool for building skills — install only when you start packaging your own. |
+| `eugeniughelbur/obsidian-second-brain` | v0.8.0 May 15, 2026 — Snyk flagged Critical Risk (4 alerts) during install verification; scheduled-agent + vault-write surface raises blast radius. Re-evaluate when maintainer addresses Snyk alerts. |
 
 ---
 

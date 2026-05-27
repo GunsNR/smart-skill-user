@@ -23,29 +23,33 @@ Write-Host "Claude home: $claudeHome"
 Write-Host "Skills dir:  $skillsDir"
 Write-Host ""
 
+# npx skills add writes to the cwd's .claude/skills/ — switch to $HOME so
+# installs land globally, not scoped to whatever repo you launched from.
+Set-Location $HOME
+
 # 1. caveman
 if (-not $SkipNpx) {
-    Write-Host "[1/14] juliusbrussee/caveman (verbosity cutter)"
+    Write-Host "[1/13] juliusbrussee/caveman (verbosity cutter)"
     Invoke-Step "npx -y skills add juliusbrussee/caveman --copy --yes"
     Write-Host ""
 }
 
 # 2. claude-mem
 if (-not $SkipNpx) {
-    Write-Host "[2/14] thedotmack/claude-mem (persistent compressed memory)"
+    Write-Host "[2/13] thedotmack/claude-mem (persistent compressed memory)"
     Invoke-Step "npx -y claude-mem install"
     Write-Host ""
 }
 
 # 3. marketingskills
 if (-not $SkipNpx) {
-    Write-Host "[3/14] coreyhaines31/marketingskills (32 marketing skills)"
+    Write-Host "[3/13] coreyhaines31/marketingskills (32 marketing skills)"
     Invoke-Step "npx -y skills add coreyhaines31/marketingskills --copy --yes"
     Write-Host ""
 }
 
 # 4. karpathy nanochat read-arxiv-paper
-Write-Host "[4/14] karpathy/nanochat read-arxiv-paper (sparse git fetch)"
+Write-Host "[4/13] karpathy/nanochat read-arxiv-paper (sparse git fetch)"
 $arxivDir = Join-Path $skillsDir "read-arxiv-paper"
 if (Test-Path $arxivDir) {
     Write-Host "Already present at $arxivDir - skipping fetch."
@@ -80,7 +84,7 @@ if (Test-Path $arxivDir) {
 Write-Host ""
 
 # 5-8, 12-13. plugin marketplace block
-Write-Host "[5-8, 12-13/14] Paste into Claude Code (interactive). Slash commands cannot be issued from a shell."
+Write-Host "[5-8, 12-13/13] Paste into Claude Code (interactive). Slash commands cannot be issued from a shell."
 Write-Host ""
 Write-Host "----- BEGIN CLAUDE-CODE-PASTE -----"
 Write-Host "/plugin marketplace add anthropics/knowledge-work-plugins"
@@ -105,7 +109,7 @@ Write-Host ""
 
 # 9. claude-context MCP
 if (-not $SkipMcp) {
-    Write-Host "[9/14] zilliztech/claude-context (MCP server)"
+    Write-Host "[9/13] zilliztech/claude-context (MCP server)"
     Write-Host "Run on each machine where you use Claude Code:"
     Write-Host "  claude mcp add claude-context -- npx -y @zilliz/claude-context-mcp"
     Write-Host "Then configure embedding + vector backend per:"
@@ -114,7 +118,7 @@ if (-not $SkipMcp) {
 }
 
 # 10. SurgeGraph
-Write-Host "[10/14] SurgeGraph Claude Code Skill (AI-citation tracking)"
+Write-Host "[10/13] SurgeGraph Claude Code Skill (AI-citation tracking)"
 Write-Host "Install via SurgeGraph's account flow:"
 Write-Host "  https://surgegraph.io/claude-code-skill"
 Write-Host "(Manual only; no verified one-line installer at time of writing.)"
@@ -122,22 +126,11 @@ Write-Host ""
 
 # 11. safishamsi/graphify
 if (-not $SkipNpx) {
-    Write-Host "[11/14] safishamsi/graphify (local code knowledge graph; 6.8-49x token cut)"
+    Write-Host "[11/13] safishamsi/graphify (local code knowledge graph; 6.8-49x token cut)"
     try {
         Invoke-Step "npx -y skills add safishamsi/graphify --copy --yes"
     } catch {
         Write-Warning "If the above failed, install manually per https://github.com/safishamsi/graphify"
-    }
-    Write-Host ""
-}
-
-# 14. eugeniughelbur/obsidian-second-brain
-if (-not $SkipNpx) {
-    Write-Host "[14/14] eugeniughelbur/obsidian-second-brain (cross-CLI Obsidian skill)"
-    try {
-        Invoke-Step "npx -y skills add eugeniughelbur/obsidian-second-brain --copy --yes"
-    } catch {
-        Write-Warning "If the above failed, install manually per https://github.com/eugeniughelbur/obsidian-second-brain"
     }
     Write-Host ""
 }

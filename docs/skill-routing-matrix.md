@@ -1,6 +1,6 @@
 # Skill Routing Matrix
 
-Smart Skill User picks the best skill (or smallest stack) per task. Repositories adapt names to their own ecosystem; defaults below name the top-14 skills from [`TOP_SKILLS.md`](TOP_SKILLS.md).
+Smart Skill User picks the best skill (or smallest stack) per task. Repositories adapt names to their own ecosystem; defaults below name the top-13 skills from [`TOP_SKILLS.md`](TOP_SKILLS.md).
 
 ## Always-On Stack (Token Savers)
 
@@ -35,7 +35,6 @@ The preflight always assumes these four are active and does not re-list them in 
 | Research / source-truth | `auto-research-loop` + `read-arxiv-paper` | implementation skills | cite sources; report-only |
 | Read an arXiv paper | `karpathy/nanochat → read-arxiv-paper` | implementation skills | summarize then link |
 | AI / LLM learning task | `read-arxiv-paper` + `andrej-karpathy-skills` | product code | think before coding |
-| Personal knowledge / second-brain | `eugeniughelbur/obsidian-second-brain` | product code, marketing | local-vault only; no external publish |
 | Code work (general) | `obra/superpowers` (plan + TDD) + `andrej-karpathy-skills` (anti-pitfalls) | marketing skills | plan before code |
 | Large-codebase search | `safishamsi/graphify` (knowledge-graph) preferred for monorepos; `claude-context` MCP otherwise; subagent for spread reads | broad file reads | none |
 | Codebase onboarding / architecture map | `safishamsi/graphify` (Leiden community detection) | marketing skills | none |
