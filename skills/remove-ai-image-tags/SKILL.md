@@ -1,6 +1,6 @@
 ---
 name: remove-ai-image-tags
-description: Strips AI-generation metadata from image files — including XMP, EXIF, and IPTC fields that identify an image as AI-generated (e.g., CreatorTool, DigitalSourceType, prompt text, model name, seed values, and generator comments). Works on single files, batches, and directories. Outputs clean copies by default; can overwrite in-place with an explicit flag. Use this skill when a user asks to "remove AI tags", "clean metadata", "strip AI fingerprints", "remove prompt data from images", "sanitize image metadata", or "make images look non-AI". Does NOT alter pixel data, re-encode lossy formats beyond what the stripping tool requires, or guarantee removal of steganographic watermarks embedded in pixel data.
+description: Strips AI-generation metadata from image files — including XMP, EXIF, and IPTC fields that identify an image as AI-generated (e.g., CreatorTool, DigitalSourceType, prompt text, model name, seed values, and generator comments) — then writes clean, neutral naming into the metadata schema fields (XMP:Title, IPTC:ObjectName, EXIF:DocumentName, XMP:Identifier) using a deterministic slug derived from date, sequence, and optional user prefix. Works on single files, batches, and directories. Outputs clean copies by default; can overwrite in-place with an explicit flag. Use this skill when a user asks to "remove AI tags", "clean metadata", "strip AI fingerprints", "remove prompt data from images", "sanitize image metadata", "auto name the images", "rename the metadata", or "make images look non-AI". Does NOT alter pixel data, rename the file on disk (unless asked), re-encode lossy formats, or guarantee removal of steganographic watermarks embedded in pixel data.
 ---
 
 # Remove AI Image Tags
@@ -14,6 +14,7 @@ Any of these signal a trigger:
 - User asks to "remove AI tags / metadata / fingerprints" from an image or folder
 - User says "clean the metadata", "strip the prompt from this image", "remove generator info", or "sanitize these images"
 - User wants images to not show AI origin in metadata viewers (e.g., Lightroom, Bridge, `exiftool -v`)
+- User asks to "auto name", "rename the metadata", "set the title", or "write clean names into the schema"
 - User provides a path to one or more images (JPEG, PNG, WebP, TIFF, AVIF, HEIC)
 
 Do NOT trigger for: pixel-level watermark removal, re-encoding, format conversion, or editing image content.
@@ -50,7 +51,7 @@ Do NOT trigger for: pixel-level watermark removal, re-encoding, format conversio
 | `IPTC:OriginatingProgram` | Generator name |
 | `IPTC:ProgramVersion` | Model version string |
 
-## How it works (3 steps)
+## How it works (4 steps)
 
 ### Step 1 — Detect and inventory
 
@@ -98,12 +99,82 @@ exiftool -all= -o "<output_dir>/" "<file_or_dir>"
 
 Always default to safe-copy mode unless the user says "overwrite", "in-place", or "replace the originals."
 
-### Step 3 — Verify and report
+### Step 3 — Auto-name (metadata schema fields)
 
-Re-run the inventory command from Step 1 on the output files to confirm the target fields are gone. Report:
+After stripping, write clean neutral names into the standard naming fields. This replaces any AI-generated title/name values that survived the strip and leaves the schema populated for DAM tools, Lightroom, Bridge, and CMS imports.
+
+#### Name slug formula
+
+```
+<prefix>-<YYYYMMDD>-<NNN>
+```
+
+- `<prefix>` — user-supplied string (default: `image`)
+- `<YYYYMMDD>` — today's date or the file's `FileModifyDate` if available
+- `<NNN>` — zero-padded sequence number within the current batch (001, 002 …)
+
+Examples: `image-20260528-001`, `product-20260528-007`, `headshot-20260528-003`
+
+#### Fields written
+
+| Field | Value written |
+|---|---|
+| `XMP:Title` | slug (e.g. `image-20260528-001`) |
+| `XMP:Identifier` | slug |
+| `IPTC:ObjectName` | slug (max 64 chars — IPTC limit) |
+| `EXIF:DocumentName` | slug |
+| `XMP:dc:title` | slug (written as a language-alt bag: `lang="x-default"`) |
+
+Do NOT write to `XMP:CreatorTool`, `EXIF:Artist`, `EXIF:Copyright`, or any field that was just stripped — those stay empty.
+
+#### exiftool command (run after the strip, per file)
+
+```bash
+exiftool -overwrite_original_in_place \
+  -XMP:Title="<slug>" \
+  -XMP:Identifier="<slug>" \
+  -IPTC:ObjectName="<slug>" \
+  -EXIF:DocumentName="<slug>" \
+  "<output_file>"
+```
+
+For batch processing with auto-incrementing sequence numbers, use a short Python helper or a shell loop:
+
+```bash
+i=1
+for f in "<output_dir>"/*.{jpg,jpeg,png,webp,tiff}; do
+  slug="image-$(date +%Y%m%d)-$(printf '%03d' $i)"
+  exiftool -overwrite_original_in_place \
+    -XMP:Title="$slug" \
+    -XMP:Identifier="$slug" \
+    -IPTC:ObjectName="$slug" \
+    -EXIF:DocumentName="$slug" \
+    "$f"
+  i=$((i + 1))
+done
+```
+
+#### Custom prefix
+
+If the user provides a prefix (e.g., "name them all `hero-`"), substitute it for `image` in the slug formula. Ask for the prefix if the user says "auto name them" without specifying one — or default to `image` and note it can be changed.
+
+#### Optional: rename the file on disk to match
+
+Only do this if the user explicitly asks to rename files (e.g., "rename them too", "match the filename"). Use:
+
+```bash
+exiftool '-FileName<XMP:Title%-.%e' "<output_dir>"
+```
+
+This renames each file to `<slug>.<ext>` using the title just written. Never rename without explicit approval.
+
+### Step 4 — Verify and report
+
+Re-run the inventory command from Step 1 on the output files to confirm the target fields are gone and the naming fields are populated. Report:
 
 - Files processed count
 - Fields removed per file
+- Names written (slug range, e.g. `image-20260528-001` → `image-20260528-012`)
 - Any files skipped (unsupported format, read-only, locked)
 - Output location (if safe-copy mode)
 
@@ -133,6 +204,10 @@ If `exiftool` is not available, report the missing dependency and the install co
 | "overwrite" / "in-place" | Add `-overwrite_original_in_place`; skip safe-copy |
 | "what's in it first" | Run Step 1 only; do not strip without confirmation |
 | "also remove GPS" | Add `-GPS:all=` to the targeted strip command |
+| "name them `hero-`" | Use `hero` as the slug prefix |
+| "skip the auto naming" | Run Steps 1–2 only; omit Step 3 |
+| "rename the files too" | After Step 3, rename on disk to match the written title |
+| "start numbering at 10" | Begin the sequence counter at 010 |
 
 ## Failure modes
 
@@ -143,6 +218,8 @@ If `exiftool` is not available, report the missing dependency and the install co
 | Unsupported format (e.g., SVG, GIF) | Note in report; exiftool supports limited GIF EXIF but not SVG |
 | PNG with iTXt/tEXt AI chunks | Use `-PNG:all=` in addition to the standard fields |
 | Field reappears after strip | Likely written in a non-standard namespace; run `-XMP:all=` and reinspect |
+| `XMP:Title` not accepted by target app | Some apps only read `IPTC:ObjectName`; confirm which fields the app reads and write to those |
+| Slug collision (duplicate names) | Increase padding width or add a timestamp suffix; never silently overwrite a name |
 
 ## PNG-specific notes
 
